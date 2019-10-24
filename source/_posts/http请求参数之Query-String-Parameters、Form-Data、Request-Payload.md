@@ -20,7 +20,7 @@ Request URL: http://test.com?from_type=省&from_name='四川省'
 Request Method: GET
 ```
 
-![query-string-parameters](/images/http/querystringparameters.png)
+![query-string-parameters](/images/article/http/querystringparameters.png)
 
 ### Post请求
 有两种形式的请求体：`FormData`，`Request Payload`
@@ -29,7 +29,7 @@ Request Method: GET
 当发起一次Post请求，若未指定 `Content-type`，则默认 `content-type` 为 `application/x-www-form-urlencoded`，
 即参数会以 `FormData` 的形式进行传递，不会显示出现在请求URL中。传递给接口的是 `key1=value1&key2=value2` 的形式。
 
-![form-data](/images/http/formdata.png)
+![form-data](/images/article/http/formdata.png)
 
 ##### formData()方法
 当我们遇到一些文件上传功能时，我们需要使用原生的 `formData()` 来进行数据组装，
@@ -40,7 +40,7 @@ http请求头
 Request URL: http://test.com/upload
 Request Method: POST
 ```
-![form-data1](/images/http/formdata1.png)
+![form-data1](/images/article/http/formdata1.png)
 
 其中，`WebKitFormBoundarysBkB6WoEBvbCRkmh` 为浏览器随机生成的 `boundary` ，作为分隔参数，作用等同于 `&`。
 
@@ -48,7 +48,7 @@ Request Method: POST
 当发起一次post请求，若 `Content-Type` 为 `application/json` ，则参数会以 `Request Payload` 的形式进行传递（数据格式为json），
 不会显示出现在请求url中。传递给接口的是 `JSON字符串` 的形式。
 
-![request-payload](/images/http/requestpayload.png)
+![request-payload](/images/article/http/requestpayload.png)
 
 ### 特殊
 在实际对接中，即使知道里上面这些分类，也还是会出错，因为还有一种情况。

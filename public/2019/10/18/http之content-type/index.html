@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      http之content-type | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="背景没啥背景，就是想整理下，发现年纪大了，记不住了。 定义content-type: 实体头部 用于指示资源的 媒体类型（MIME类型） MIME类型语法 type/subtype  由类型与子类型两个字符串中间用’/‘分隔而组成。不允许空格存在。type 表示可以被分多个子类的独立类别。subtype 表示细分后的每个类型。MIME类型对大小写不敏感，但是传统写法都是小写。 types独立类型">
+<meta name="keywords" content="content-type http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http之content-type | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2019/10/18/http之content-type/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="背景没啥背景，就是想整理下，发现年纪大了，记不住了。 定义content-type: 实体头部 用于指示资源的 媒体类型（MIME类型） MIME类型语法 type/subtype  由类型与子类型两个字符串中间用’/‘分隔而组成。不允许空格存在。type 表示可以被分多个子类的独立类别。subtype 表示细分后的每个类型。MIME类型对大小写不敏感，但是传统写法都是小写。 types独立类型">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ashaliu.github.io/images/article/contentType/multipart:form-data.png">
+<meta property="og:updated_time" content="2019-10-18T09:09:11.872Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http之content-type | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="背景没啥背景，就是想整理下，发现年纪大了，记不住了。 定义content-type: 实体头部 用于指示资源的 媒体类型（MIME类型） MIME类型语法 type/subtype  由类型与子类型两个字符串中间用’/‘分隔而组成。不允许空格存在。type 表示可以被分多个子类的独立类别。subtype 表示细分后的每个类型。MIME类型对大小写不敏感，但是传统写法都是小写。 types独立类型">
+<meta name="twitter:image" content="http://ashaliu.github.io/images/article/contentType/multipart:form-data.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">http之content-type</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-10-18" class="post-meta__date date">2019-10-18</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/content-type-http/">content-type http</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>没啥背景，就是想整理下，发现年纪大了，记不住了。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>content-type: <code>实体头部</code> 用于指示资源的 <code>媒体类型（MIME类型）</code></p>
+<h2 id="MIME类型"><a href="#MIME类型" class="headerlink" title="MIME类型"></a>MIME类型</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><blockquote>
+<p>type/subtype</p>
+</blockquote>
+<p>由类型与子类型两个字符串中间用’/‘分隔而组成。不允许空格存在。type 表示可以被分多个子类的独立类别。subtype 表示细分后的每个类型。<br>MIME类型对大小写不敏感，但是传统写法都是小写。</p>
+<h3 id="types"><a href="#types" class="headerlink" title="types"></a>types</h3><h4 id="独立类型"><a href="#独立类型" class="headerlink" title="独立类型"></a>独立类型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>表明文件是普通文本，理论上是人类可读</td>
+<td>text/plain（默认）, text/html, text/css, text/javascript</td>
+</tr>
+<tr>
+<td>image</td>
+<td>表明是某种图像。不包括视频，但是动态图（比如动态gif）也使用image类型</td>
+<td>image/gif, image/png, image/jpeg, image/bmp, image/webp, image/x-icon, image/vnd.microsoft.icon</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>表明是某种音频文件</td>
+<td>audio/midi, audio/mpeg, audio/webm, audio/ogg, audio/wav</td>
+</tr>
+<tr>
+<td>video</td>
+<td>表明是某种视频文件</td>
+<td>video/webm, video/ogg</td>
+</tr>
+<tr>
+<td>application</td>
+<td>表明是某种二进制数据</td>
+<td>application/octet-stream（默认）, application/pkcs12, application/vnd.mspowerpoint, application/xhtml+xml, application/xml,  application/pdf</td>
+</tr>
+</tbody>
+</table>
+<h4 id="multipart类型"><a href="#multipart类型" class="headerlink" title="multipart类型"></a>multipart类型</h4><p>Multipart 类型表示细分领域的文件类型的种类，经常对应不同的 MIME 类型。这是复合文件的一种表现方式。</p>
+<p><code>Content-Type: multipart/mixed; boundary=gc0p4Jq0M2Yt08jU534c0p</code><br>其中boundary字段是必须的，用于区分消息体中的数据边界，一般是两个’-‘的格式作为该端的开头，例如：<br><code>--gc0p4Jq0M2Yt08jU534c0p</code></p>
+<ol>
+<li>multipart/form-data<br> 用于HTML表单，从浏览器发送信息给服务器。 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- html表单 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">id</span>=<span class="string">"name"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"pic"</span>&gt;</span>照片：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"image"</span> <span class="attr">id</span>=<span class="string">"image"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-item"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"commit"</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line">  <span class="keyword">var</span> name = <span class="built_in">document</span>.querySelector(<span class="string">"#name"</span>).value;</span><br><span class="line">  <span class="keyword">var</span> image = <span class="built_in">document</span>.querySelector(<span class="string">"#image"</span>).files[<span class="number">0</span>];</span><br><span class="line">  formData.append(<span class="string">"name"</span>, name);</span><br><span class="line">  formData.append(<span class="string">"image"</span>, image);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  xhr.open(<span class="string">"POST"</span>, <span class="string">"/user"</span>);</span><br><span class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState === XMLHttpRequest.DONE &amp;&amp; xhr.status === <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line">      alert(xhr.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  xhr.send(formData);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">"#commit"</span>).addEventListener(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    upload();</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>   <img src="/images/article/contentType/multipart:form-data.png" alt="Form-data"></p>
+<p>   从图中可以看出，这个 <code>Form-data</code>，是个复合数据。表单有两个值，一个是 <code>name</code>，一个是 <code>iamge</code>。</p>
+<h5 id="Content-Disposition小科普"><a href="#Content-Disposition小科普" class="headerlink" title="Content-Disposition小科普"></a>Content-Disposition小科普</h5><p>   当页面上有表单，并且我们选择的表单提交方式为 multipart/form-data 时，Content-Disposition 会出现在请求体中。其作用是说明对应的表单项的字段名是什么，表单中上传的文件名是什么。在该场景下第一个参数总是固定不变的 form-data，另外有两个可选参数。name 表示对应的表单项的字段名，filename 表示对应的上传的文件名。参数之间使用 ; 进行分割。<br>   Content-Disposition 在 multipart/form-data 的请求体头中可能会这样出现：<br>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data</span><br><span class="line">Content-Disposition: form-data; name=&quot;fieldName&quot;</span><br><span class="line">Content-Disposition: form-data; name=&quot;fieldName&quot;; filename=&quot;filename.jpg&quot;</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>multipart/byteranges</li>
+</ol>
+<h3 id="常见的类型"><a href="#常见的类型" class="headerlink" title="常见的类型"></a>常见的类型</h3><h4 id="静态资源、图片、媒体类"><a href="#静态资源、图片、媒体类" class="headerlink" title="静态资源、图片、媒体类"></a>静态资源、图片、媒体类</h4><p><code>text/xxx 、image/xxx 、video/xxxx</code></p>
+<h4 id="application"><a href="#application" class="headerlink" title="application"></a>application</h4><h5 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h5><p>是表单提交中默认的类型，要求传送的数据是 <code>键值对</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key1=value1&amp;key2=value2</span><br></pre></td></tr></table></figure></p>
+<p>数据被编码成以 ‘&amp;’ 分隔的键-值对, 同时以 ‘=’ 分隔键和值. 非字母或数字的字符会被 <code>百分号编码（percent-encoding，又称URL编码）</code>: 这也就是为什么这种类型不支持二进制数据的原因 (应使用 multipart/form-data 代替).</p>
+<p>但是回想我们平时请求接口的时候，不会自己做去这个事情，因为我们依赖的库 <code>jquery</code> / <code>axios</code> 帮我们做了这个事情。<br>在 <code>chrome devTools</code> 里面，会有一个 <code>Form Data</code> 的栏目，工具会帮我们解析好，展示出来。可以点一下右边的 <code>view source</code> 看本来的格式。</p>
+<p>当然对于服务端来说收到的就是一个 <code>key1=value1&amp;key2=value2</code> 字符串，需要自己去取下</p>
+<h5 id="application-json"><a href="#application-json" class="headerlink" title="application/json"></a>application/json</h5><p>JSON格式支持比键值对复杂得多的结构化数据。发给服务端的数据就是一个 <code>JSON 字符串</code>。<br>在 <code>chrome devTools</code> 里面，会有一个 <code>Request Payload</code> 的栏目，工具会帮我们解析好，展示出来。同样可以 <code>view source</code> 看本来的格式。</p>
+<p>对于服务端来说收到的就是一个 <code>JSON 字符串</code>，需要自己parse一下。</p>
+<p>返回来，服务端的接口返回的 <code>response header</code> 里面的 <code>content type</code> 一般来说是 <code>application/json</code>，所以我们接到数据后，应该 <code>parse</code> 一下，当然，依赖的库会帮我们做掉</p>
+<h4 id="multipart-form-data"><a href="#multipart-form-data" class="headerlink" title="multipart/form-data"></a>multipart/form-data</h4><p>见之前的</p>
+<h2 id="content-type的指令"><a href="#content-type的指令" class="headerlink" title="content-type的指令"></a>content-type的指令</h2><ol>
+<li>media-type<br>资源或数据的 MIME type 。</li>
+<li>charset<br>字符编码标准。</li>
+<li>boundary<br>对于多部分实体，boundary 是必需的，其包括来自一组字符的1到70个字符，已知通过电子邮件网关是非常健壮的，而不是以空白结尾。它用于封装消息的多个部分的边界。</li>
+</ol>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      DOM的重排和重绘 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="1. 前言废话不多说，探究一下Dom渲染的本质。其实也是《高性能的javaScript》写的。浏览器中Dom的实现和javaScript是分开的，每次通过javaScript操作DOM都是需要付出十分昂贵的代价，所以我们只能想尽办法，减少操作DOM次数，尽量自己先在javaScript中实现 2. 由来当你浏览器下载完所有的组成元素，HTML标记啊，js啊，图片啊等等，浏览器会解析文件种下两个树，">
+<meta name="keywords" content="DOM渲染">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM的重排和重绘 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2016/12/14/DOM的重排和重绘/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="1. 前言废话不多说，探究一下Dom渲染的本质。其实也是《高性能的javaScript》写的。浏览器中Dom的实现和javaScript是分开的，每次通过javaScript操作DOM都是需要付出十分昂贵的代价，所以我们只能想尽办法，减少操作DOM次数，尽量自己先在javaScript中实现 2. 由来当你浏览器下载完所有的组成元素，HTML标记啊，js啊，图片啊等等，浏览器会解析文件种下两个树，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM的重排和重绘 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="1. 前言废话不多说，探究一下Dom渲染的本质。其实也是《高性能的javaScript》写的。浏览器中Dom的实现和javaScript是分开的，每次通过javaScript操作DOM都是需要付出十分昂贵的代价，所以我们只能想尽办法，减少操作DOM次数，尽量自己先在javaScript中实现 2. 由来当你浏览器下载完所有的组成元素，HTML标记啊，js啊，图片啊等等，浏览器会解析文件种下两个树，">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">DOM的重排和重绘</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-12-14" class="post-meta__date date">2016-12-14</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/DOM渲染/">DOM渲染</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h3><p>废话不多说，探究一下Dom渲染的本质。其实也是<strong>《高性能的javaScript》</strong>写的。<br>浏览器中Dom的实现和javaScript是分开的，每次通过javaScript操作DOM都是需要付出十分昂贵的代价，所以我们只能想尽办法，减少操作DOM次数，尽量自己先在javaScript中实现</p>
+<h3 id="2-由来"><a href="#2-由来" class="headerlink" title="2. 由来"></a>2. 由来</h3><p>当你浏览器下载完所有的组成元素，HTML标记啊，js啊，图片啊等等，浏览器会解析文件种下两个树，DOM树和渲染树。顾名思义，DOM树，表示结构，里面带了各种节点；而渲染树，表示显示，里面带了各种需要被其他人看见的节点。<br>接下来，当两棵树创造完毕之后，浏览器就可以开始绘制页面上的元素了。</p>
+<h3 id="3-两个动作"><a href="#3-两个动作" class="headerlink" title="3. 两个动作"></a>3. 两个动作</h3><p>当DOM的改变影响到了元素的几何属性(宽或高)，比如你加了文字或者改变了边框的高度，导致浏览器需要重新计算元素的几何属性，而且其他元素的几何属性和位置也会因此改变受到影响。<br>浏览器使渲染树上受到影响的部分失效，然后重新构建渲染树，这个过程叫<strong>重排</strong><br>之后，浏览器会重新绘制页面上受影响的部分，这个过程叫<strong>重绘</strong><br>当然，不是所有的DOM操作都会导致这重排，只要你不影响到<strong>页面布局</strong>，假如你只是修改了背景颜色，那只会触发重绘。</p>
+<h3 id="4-什么时候会出发重排"><a href="#4-什么时候会出发重排" class="headerlink" title="4. 什么时候会出发重排"></a>4. 什么时候会出发重排</h3><ul>
+<li>添加或者删除课件的DOM元素</li>
+<li>元素位置的改变</li>
+<li>元素尺寸的改变（边距、填充、边框宽度、自身宽度、自身高度等属性的改变）</li>
+<li>内容的改变，例如：文本的改变或者图片被其他不用尺寸的替换了</li>
+<li>最初页面的渲染</li>
+<li>浏览器窗口改变尺寸</li>
+</ul>
+<p>注意：根据改变的性质，渲染树上或大或小的一部分需要重新计算。某些改变可导致重排版整个页面：例如，当一个滚动条出现时。</p>
+<p>重排事件这么昂贵，大多数浏览器通过队列化修改和批量显示优化重排版过程。然而，你可<br>能（经常不由自主地）强迫队列刷新并要求所有计划改变的部分立刻应用。获取布局信息的操作将导致刷<br>新队列动作，这意味着使用了下面这些方法：</p>
+<ul>
+<li>offsetTop, offsetLeft, offsetWidth, offsetHeight</li>
+<li>scrollTop, scrollLeft, scrollWidth, scrollHeight</li>
+<li>clientTop, clientLeft, clientWidth, clientHeight</li>
+<li>getComputedStyle() (currentStyle in IE)（在 IE 中此函数称为 currentStyle）</li>
+</ul>
+<p>布局信息由这些属性和方法返回最新的数据， 所以浏览器不得不运行渲染队列中待改变的项目并重新排<br>版以返回正确的值</p>
+<p>说都这儿就让我想起来，当年第一次写动画的时候，啥也不懂，通过js来不断的获取target的offsetTop，来判断位置，导致在手机端特别卡顿，罪过。如今看到这本书，觉得我怎么就没早点看这本书呢？</p>
+<h3 id="5-最小化重排和重绘"><a href="#5-最小化重排和重绘" class="headerlink" title="5. 最小化重排和重绘"></a>5. 最小化重排和重绘</h3><ul>
+<li>合并DOM操作逻辑，争取最后一次成功</li>
+<li>批量修改DOM操作时，可以先把它脱离文档流(浮起来或者隐藏或者删除)，再批量的逻辑修改，最后回归文档流</li>
+<li>当你查询布局信息如偏移量、滚动条位置，或风格属性时，浏览器会刷队列并执行所有修改操作，以返回最新的数值。最好是尽量减少对布局信息的查询次数，查询时将它赋给局部变量，并用局部变量参与计算</li>
+<li>将元素提出动画流，position:absolute，尽量避免影响到其他的元素</li>
+<li>IE从7开始，支持在任何元素上:hover，但是大量使用，会降低反应速度，IE8尤其明显，很长的列表慎用</li>
+<li>采用托管技术，使其冒泡到父节点</li>
+</ul>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

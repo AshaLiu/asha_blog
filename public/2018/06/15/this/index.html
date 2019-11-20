@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      【三】this | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="前言明天端午节放假了，晚上要十二点睡觉，定了个闹钟抢小米扫地机器人。前100名只要799，然鹅。。。。今天白天在想这个事情的时候，觉得感觉猜测前端应该会一进这个页面就让你抢不到？？会这样吗？要不然发现请求这么多次，狂点狂点，服务器会挂？ 扯回正题。看到这个this，我还记得我以前还专门做了个笔记，用到的时候查一遍看一遍，因为记不住。网上也有好多题目，this来this去的，绕一绕基本就都答错。我先">
+<meta name="keywords" content="js 基础 this">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【三】this | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2018/06/15/this/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="前言明天端午节放假了，晚上要十二点睡觉，定了个闹钟抢小米扫地机器人。前100名只要799，然鹅。。。。今天白天在想这个事情的时候，觉得感觉猜测前端应该会一进这个页面就让你抢不到？？会这样吗？要不然发现请求这么多次，狂点狂点，服务器会挂？ 扯回正题。看到这个this，我还记得我以前还专门做了个笔记，用到的时候查一遍看一遍，因为记不住。网上也有好多题目，this来this去的，绕一绕基本就都答错。我先">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-12T02:57:38.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【三】this | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="前言明天端午节放假了，晚上要十二点睡觉，定了个闹钟抢小米扫地机器人。前100名只要799，然鹅。。。。今天白天在想这个事情的时候，觉得感觉猜测前端应该会一进这个页面就让你抢不到？？会这样吗？要不然发现请求这么多次，狂点狂点，服务器会挂？ 扯回正题。看到这个this，我还记得我以前还专门做了个笔记，用到的时候查一遍看一遍，因为记不住。网上也有好多题目，this来this去的，绕一绕基本就都答错。我先">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">【三】this</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-06-15" class="post-meta__date date">2018-06-15</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/js-基础-this/">js 基础 this</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>明天端午节放假了，晚上要十二点睡觉，定了个闹钟抢小米扫地机器人。前100名只要799，然鹅。。。。<br>今天白天在想这个事情的时候，觉得感觉猜测前端应该会一进这个页面就让你抢不到？？会这样吗？要不然发现请求这么多次，狂点狂点，服务器会挂？</p>
+<p>扯回正题。<br>看到这个this，我还记得我以前还专门做了个笔记，用到的时候查一遍看一遍，因为记不住。网上也有好多题目，this来this去的，绕一绕基本就都答错。<br>我先亮出自己的笔记。</p>
+<h3 id="this的用法"><a href="#this的用法" class="headerlink" title="this的用法"></a>this的用法</h3><h4 id="纯粹的函数调用"><a href="#纯粹的函数调用" class="headerlink" title="纯粹的函数调用"></a>纯粹的函数调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var x = 1;</span><br><span class="line">function test()&#123;</span><br><span class="line">    this.x = 0;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br><span class="line">alert(x); //0</span><br></pre></td></tr></table></figure>
+<p>此时<code>this</code>指向全局</p>
+<h4 id="作为对象方法的调用"><a href="#作为对象方法的调用" class="headerlink" title="作为对象方法的调用"></a>作为对象方法的调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">    alert(this.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;&#125;;</span><br><span class="line">o.x = 1;</span><br><span class="line">o.m = test;</span><br><span class="line">o.m(); // 1</span><br></pre></td></tr></table></figure>
+<p>此时<code>this</code>指向这个调用的对象</p>
+<h4 id="作为构造函数调用"><a href="#作为构造函数调用" class="headerlink" title="作为构造函数调用"></a>作为构造函数调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function test()&#123;</span><br><span class="line">    this.x = 1;</span><br><span class="line">&#125;</span><br><span class="line">var o = new test();</span><br><span class="line">alert(o.x); // 1</span><br></pre></td></tr></table></figure>
+<p>此时<code>this</code>指向这个new出来的新对象</p>
+<h4 id="apply、call"><a href="#apply、call" class="headerlink" title="apply、call"></a>apply、call</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var x = 0;</span><br><span class="line"></span><br><span class="line">function test()&#123;</span><br><span class="line"></span><br><span class="line">    alert(this.x);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var o=&#123;&#125;;</span><br><span class="line">o.x = 1;</span><br><span class="line">o.m = test;</span><br><span class="line">o.m.apply(); //0</span><br></pre></td></tr></table></figure>
+<p><code>apply()</code>是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。<br>因此，<code>this</code>指的就是这第一个参数。</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>不知道起什么名字了。<br><code>this</code>的使用就是代表一个上下文环境，如果没有<code>this</code>，就需要手动的传入<code>context</code>。<br>然后之前系列一的时候提到了<code>动态作用域</code>，这个<code>this</code>的执行就有点像。<br><code>this</code>是在运行时进行绑定的，并不是在编写时绑定，它的上下文取决于函数调用时的各种条件。<code>this</code>的绑定和函数声明的位置没有任何关系，只取决于函数的调用方式。</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><code>es6</code>出现之后，有了箭头函数。箭头函数对<code>this</code>很特殊，它不管<code>this</code>被调用的上下文环境，只管自己在定义的时候的所以的父级的上下文环境。<code>this</code> 总是指向定义时所在的对象。（<code>this</code>绑定）<br>也就相当于之前的我们常用的会声明一个变量<code>self</code>来保存当前的<code>this</code>，避免因为被调用的的位置的复杂性而让想要的<code>this</code>丢失的情况。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>由new调用? 绑定到新创建的对象。</li>
+<li>由call或者apply(或者bind)调用? 绑定到指定的对象。</li>
+<li>由上下文对象调用? 绑定到那个上下文对象。</li>
+<li>默认: 在严格模式下绑定到undefined，否则绑定到全局对象。</li>
+</ol>
+<p>撒花结束！今天对着电脑太久了，玩游戏去了。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

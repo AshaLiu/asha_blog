@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      angularJS中ng-repeat的track by | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="引言新年博客更新的速度突然间就这么慢了下来，本来也慢。其实我是积攒了一堆要总结的。说到ng-repeat,网上一堆说要使用track by来优化性能，一直在使用，自己也没有实际求做过验证。 ng-repeatng-repeat指令遍历一个JavaScript数组，当数组中有重复元素的时候，AngularJS会报错123456789101112131415&amp;lt;html&amp;gt;  &amp;lt;head">
+<meta name="keywords" content="angularJS ng-repeat trackby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angularJS中ng-repeat的track by | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2017/03/07/angularJS中ng-repeat的track by/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="引言新年博客更新的速度突然间就这么慢了下来，本来也慢。其实我是积攒了一堆要总结的。说到ng-repeat,网上一堆说要使用track by来优化性能，一直在使用，自己也没有实际求做过验证。 ng-repeatng-repeat指令遍历一个JavaScript数组，当数组中有重复元素的时候，AngularJS会报错123456789101112131415&amp;lt;html&amp;gt;  &amp;lt;head">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angularJS中ng-repeat的track by | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="引言新年博客更新的速度突然间就这么慢了下来，本来也慢。其实我是积攒了一堆要总结的。说到ng-repeat,网上一堆说要使用track by来优化性能，一直在使用，自己也没有实际求做过验证。 ng-repeatng-repeat指令遍历一个JavaScript数组，当数组中有重复元素的时候，AngularJS会报错123456789101112131415&amp;lt;html&amp;gt;  &amp;lt;head">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">angularJS中ng-repeat的track by</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-03-07" class="post-meta__date date">2017-03-07</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/angularJS-ng-repeat-trackby/">angularJS ng-repeat trackby</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>新年博客更新的速度突然间就这么慢了下来，本来也慢。其实我是积攒了一堆要总结的。<br>说到<code>ng-repeat</code>,网上一堆说要使用<code>track by</code>来优化性能，一直在使用，自己也没有实际求做过验证。</p>
+<h3 id="ng-repeat"><a href="#ng-repeat" class="headerlink" title="ng-repeat"></a>ng-repeat</h3><p>ng-repeat指令遍历一个JavaScript数组，当数组中有重复元素的时候，AngularJS会报错<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;  </span><br><span class="line">    &lt;script src=<span class="string">"angular-1.2.2/angular.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span>  </span><br><span class="line">    &lt;script&gt;    </span><br><span class="line">         <span class="function"><span class="keyword">function</span> <span class="title">rootController</span>(<span class="params">$scope,$rootScope,$injector</span>) </span>&#123;  </span><br><span class="line">            $scope.dataList = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>];  </span><br><span class="line">         &#125;  </span><br><span class="line">    &lt;<span class="regexp">/script&gt;  </span></span><br><span class="line"><span class="regexp">  &lt;/</span>head&gt;  </span><br><span class="line">      &lt;body ng-app ng-controller=<span class="string">"rootController"</span>&gt;  </span><br><span class="line">            &lt;div ng-repeat=<span class="string">"data in dataList"</span>&gt;  </span><br><span class="line">                &#123;&#123;data&#125;&#125;      </span><br><span class="line">            &lt;<span class="regexp">/div&gt;  </span></span><br><span class="line"><span class="regexp">      &lt;/</span>body&gt;  </span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>但是当你的<code>$scope.dataList = [{id:1},{id:1}];</code>是不会报错的<br>很简单，angular认为对于数字或者字符串等基本数据类型来说，它的id就是它自身的值。因此数组中是不允许存在两个相同的数字的，而如果是javascript对象类型数据，那么就算内容一摸一样，ng-repeat也不会认为这是相同的对象。<br>为了规避这个错误，需要定义自己的<code>track by</code>表达式。</p>
+<ul>
+<li><p>业务上自己生成唯一的id<br><code>item in items track by item.id</code></p>
+</li>
+<li><p>或者直接拿循环的索引变量$index来用<br><code>item in items track by $index</code></p>
+</li>
+</ul>
+<h3 id="ng-repeat的DOM刷新"><a href="#ng-repeat的DOM刷新" class="headerlink" title="ng-repeat的DOM刷新"></a>ng-repeat的DOM刷新</h3><p>当scope中的dataList数据发生了变化，界面会自动刷新。</p>
+<ul>
+<li>删除之前所有存在的dom，然后重新生成dom</li>
+<li>重用之前的dom元素，仅仅更新dom元素的属性</li>
+</ul>
+<p>在没有使用<code>track by</code>的情况下，angular默认采用的是第一种方式，它会往数组里每个元素加一个<code>$$hashKey</code>的属性。<br>这个<code>key</code>是由 Angular 内部的<code>nextUid()</code>方法生成，类似数据库自增，但是是使用字符串。所以当数组变化的时候，每次生成的$$hashKey都不一样，导致dom会删了再重建。<br>但是当你采用<code>track by</code>的时候，angular会根据的by的东西，判断新的数据和旧的数据是不是一致，一致的话就直接改变dom属性，不一致的话就会删了重建。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我觉得<code>track by item.id</code>和<code>$index</code>来说，还是<code>$index</code>好一点。<br>依靠服务端的话，万一数据是重复的，比如简单的基础类型数据，前端会报错，如果<code>[1,2,3]</code>变成<code>[2,3,1]</code>,那么dom还是会删除再重建。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://www.codelord.net/2014/04/15/improving-ng-repeat-performance-with-track-by/" target="_blank" rel="noopener">Improving ng-repeat Performance with “track by”</a></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

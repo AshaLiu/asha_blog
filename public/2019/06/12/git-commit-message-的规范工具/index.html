@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      git commit-message 的规范工具 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="背景某一天下午，温度和湿度都很适宜，写代码也写的很来劲，心情也很好,兴致勃勃的。突然钉钉群响了，点开一看，隔壁同事发了一个关于提交代码的 commit message 范本。 123456789// commit 信息规范feat: 新功能 (feature)fix: 修补bugdocs: 补充文档ref: 重构代码 (refactor)chore: 一些配置的变动style: ui，样式调整te">
+<meta name="keywords" content="git 工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git commit-message 的规范工具 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2019/06/12/git-commit-message-的规范工具/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="背景某一天下午，温度和湿度都很适宜，写代码也写的很来劲，心情也很好,兴致勃勃的。突然钉钉群响了，点开一看，隔壁同事发了一个关于提交代码的 commit message 范本。 123456789// commit 信息规范feat: 新功能 (feature)fix: 修补bugdocs: 补充文档ref: 重构代码 (refactor)chore: 一些配置的变动style: ui，样式调整te">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ashaliu.github.io/images/article/commitMessage/commit-message.png">
+<meta property="og:image" content="http://ashaliu.github.io/images/article/commitMessage/angular-commit-message.png">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git commit-message 的规范工具 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="背景某一天下午，温度和湿度都很适宜，写代码也写的很来劲，心情也很好,兴致勃勃的。突然钉钉群响了，点开一看，隔壁同事发了一个关于提交代码的 commit message 范本。 123456789// commit 信息规范feat: 新功能 (feature)fix: 修补bugdocs: 补充文档ref: 重构代码 (refactor)chore: 一些配置的变动style: ui，样式调整te">
+<meta name="twitter:image" content="http://ashaliu.github.io/images/article/commitMessage/commit-message.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">git commit-message 的规范工具</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-06-12" class="post-meta__date date">2019-06-12</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/git-工具/">git 工具</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>某一天下午，温度和湿度都很适宜，写代码也写的很来劲，心情也很好,兴致勃勃的。突然钉钉群响了，点开一看，隔壁同事发了一个关于提交代码的 <code>commit message</code> 范本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// commit 信息规范</span></span><br><span class="line"></span><br><span class="line">feat: 新功能 (feature)</span><br><span class="line">fix: 修补bug</span><br><span class="line">docs: 补充文档</span><br><span class="line">ref: 重构代码 (refactor)</span><br><span class="line">chore: 一些配置的变动</span><br><span class="line">style: ui，样式调整</span><br><span class="line">test: 测试内容</span><br></pre></td></tr></table></figure>
+<p>我一看，很新颖啊，说的很有道理，值得推广，于是立马在下午的提交代码的过程中，用上了。<br>但是种类太多了，又拿出了便利贴，把所有类别都抄在了上面，方便实时查看，又觉得确实是种规范，立马又推给了之前公司的同事。（可见我多么认可）</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>一开始还可以，我很认真的严格按照规范执行，但是我写去写去就觉得 <code>fix: 修复ios12微信键盘失焦页面不下来的问题</code>，按照小学的作业来看，这个明明是个病句啊。 <code>fix</code> 就是 <code>修复</code> 啊，我为什么要多此一举。<br>渐渐地就开始懒了，便利贴也脱落了，然后我的画风就变成了这样混搭风<br><img src="/images/article/commitMessage/commit-message.png" alt="commit-message"><br>并且我也觉得完全没毛病。写成什么样的形式，最终目的是可读性好。我已经做到了。其他同事做 <code>code review</code> 的时候也是没有问题的。</p>
+<h2 id="转变"><a href="#转变" class="headerlink" title="转变"></a>转变</h2><p>周会了，主题是规范，其中就扯到了这个 <code>commit message</code> 的规范、形式、和执行。<br>当场我就google了，查阅相关资料。发现原来这个规范最初是 <code>Angular 规范</code>，大致长这样<br><img src="/images/article/commitMessage/angular-commit-message.png" alt="angular-commit-message"></p>
+<p>它是有好处的。</p>
+<ol>
+<li><p>提供更多的历史信息，方便快速浏览。</p>
+</li>
+<li><p>可以过滤某些commit（比如文档改动），便于快速查找信息。<br><code>git log &lt;last release&gt; HEAD --grep feature</code></p>
+</li>
+<li><p>可以直接从commit生成 <code>Change log</code></p>
+</li>
+</ol>
+<h2 id="执行规范"><a href="#执行规范" class="headerlink" title="执行规范"></a>执行规范</h2><p>鉴于我之前慢慢的就不规范，并且没有约束力，但是确实用上了这个规范是有意义的。<br>于是想着能不能有像 <code>EsLint.js</code> 这样的强制工具，强制约束我。（果然人还是犯贱的…）</p>
+<h2 id="commit-message-的格式"><a href="#commit-message-的格式" class="headerlink" title="commit message 的格式"></a>commit message 的格式</h2><p><code>commit message</code> 包括三个部分： <code>Header</code> 、 <code>Body</code> 、 <code>Footer</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt; // 必填</span><br><span class="line">// 空一行</span><br><span class="line">&lt;body&gt; // 选填</span><br><span class="line">// 空一行</span><br><span class="line">&lt;footer&gt; // 选填</span><br></pre></td></tr></table></figure></p>
+<p>不管是哪一个部分，任何一行都不得超过72个字符（或100个字符）。这是为了避免自动换行影响美观。</p>
+<h3 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h3><p>Header部分只有一行，包括三个字段：type（必需）、scope（可选）和subject（必需）。</p>
+<h4 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h4><blockquote>
+<p>feat：新功能（feature）</p>
+</blockquote>
+<blockquote>
+<p>fix：修补bug</p>
+</blockquote>
+<blockquote>
+<p>docs：文档（documentation）</p>
+</blockquote>
+<blockquote>
+<p>style： 格式（不影响代码运行的变动）</p>
+</blockquote>
+<blockquote>
+<p>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</p>
+</blockquote>
+<blockquote>
+<p>test：增加测试</p>
+</blockquote>
+<blockquote>
+<p>chore：构建过程或辅助工具的变动</p>
+</blockquote>
+<p>tip:<br>如果 <code>type</code> 为 <code>feat</code> 和 <code>fix</code>，则该 <code>commit</code> 将肯定出现在 <code>Change log</code> 之中。</p>
+<p>其他情况（<code>docs、chore、style、refactor、test</code>）由你决定，要不要放入 <code>Change log</code>，建议是不要。</p>
+<h4 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h4><p>用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。</p>
+<h4 id="subject"><a href="#subject" class="headerlink" title="subject"></a>subject</h4><blockquote>
+<p>以动词开头，使用第一人称现在时，比如change，而不是changed或changes<br>第一个字母小写<br>结尾不加句号（.）</p>
+</blockquote>
+<h3 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h3><p>对本次 commit 的详细描述，可以分成多行。</p>
+<h3 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a>Footer</h3><ol>
+<li><p>关闭 <code>Issue</code><br>如果当前 <code>commit</code> 针对某个<code>issue</code>，那么可以在 <code>Footer</code> 部分关闭这个 <code>issue</code> 。<br><code>Closes #123, #245, #992</code></p>
+</li>
+<li><p>不兼容变动<br>如果当前代码与上一个版本不兼容，则 <code>Footer</code> 部分以 <code>BREAKING CHANGE</code> 开头，后面是对变动的描述、以及变动理由和迁移方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">BREAKING CHANGE: isolate scope bindings definition has changed.</span><br><span class="line"></span><br><span class="line">    To migrate the code follow the example below:</span><br><span class="line"></span><br><span class="line">    Before:</span><br><span class="line"></span><br><span class="line">    scope: &#123;</span><br><span class="line">      myAttr: &apos;attribute&apos;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    After:</span><br><span class="line"></span><br><span class="line">    scope: &#123;</span><br><span class="line">      myAttr: &apos;@&apos;,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    The removed `inject` wasn&apos;t generaly useful for directives so there should be no code using it.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="commitlint"><a href="#commitlint" class="headerlink" title="commitlint"></a>commitlint</h2><p><code>commitlint</code> 是一个工具，会检查我们的 <code>commit message</code> 是否满足规范。</p>
+<p>通常上，我们这个规范是 <code>type(scope?): subject  #scope is optional</code>，<br>这个type，常见类型根据 <code>commitlint-config-conventional (based on the the Angular convention)</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">build：主要目的是修改项目构建系统(例如 glup，webpack，rollup 的配置等)的提交</span><br><span class="line">ci：主要目的是修改项目继续集成流程(例如 Travis，Jenkins，GitLab CI，Circle等)的提交</span><br><span class="line">docs：文档更新</span><br><span class="line">feat：新增功能</span><br><span class="line">merge：分支合并 Merge branch ? of ?</span><br><span class="line">fix：bug 修复</span><br><span class="line">perf：性能, 体验优化</span><br><span class="line">refactor：重构代码(既没有新增功能，也没有修复 bug)</span><br><span class="line">style：不影响程序逻辑的代码修改(修改空白字符，格式缩进，补全缺失的分号等，没有改变代码逻辑)</span><br><span class="line">test：新增测试用例或是更新现有测试</span><br><span class="line">revert：回滚某个更早之前的提交</span><br><span class="line">chore：不属于以上类型的其他类型</span><br></pre></td></tr></table></figure>
+<p>所以第一步，下载两个npm包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @commitlint/config-conventional @commitlint/cli</span><br></pre></td></tr></table></figure></p>
+<p>第二步，根目录新建一个js文件 <code>commitlint.config.js</code> ，<br>然后内容是 <code>module.exports = {extends: [&#39;@commitlint/config-conventional&#39;]}</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;module.exports = &#123;extends: [&apos;@commitlint/config-conventional&apos;]&#125;&quot; &gt; commitlint.config.js</span><br></pre></td></tr></table></figure></p>
+<p>当然除了这个规范 <code>@commitlint/config-conventional</code> 还有其他的规范</p>
+<blockquote>
+<p>@commitlint/config-angular</p>
+</blockquote>
+<blockquote>
+<p>@commitlint/config-conventional</p>
+</blockquote>
+<blockquote>
+<p>@commitlint/config-lerna-scopes</p>
+</blockquote>
+<blockquote>
+<p>@commitlint/config-patternplate</p>
+</blockquote>
+<blockquote>
+<p>conventional-changelog-lint-config-atom</p>
+</blockquote>
+<blockquote>
+<p>conventional-changelog-lint-config-canonical</p>
+</blockquote>
+<p>当然还可以自定义配置，但是不介绍了。</p>
+<h2 id="git-hooks"><a href="#git-hooks" class="headerlink" title="git hooks"></a>git hooks</h2><p>上面介绍的是一个检查 <code>commit message</code> 的工具，要想达到 <code>git commit -m &#39;xxxx&#39;</code> 的时候触发这个检查动作，<br>就要利用另外一个工具 <code>git hooks</code>。</p>
+<p>钩子(hooks)是一些在 <code>&quot;$GIT-DIR/hooks&quot;</code> 目录的脚本, 在被特定的事件(certain points)触发后被调用。当 <code>&quot;git init&quot;</code> 命令被调用后, 一些非常有用的示例钩子文件(hooks)被拷到新仓库的hooks目录中;<br>但是在默认情况下这些钩子(hooks)是不生效的。 把这些钩子文件(hooks)的”.sample”文件名后缀去掉就可以使它们生效了。</p>
+<p>也就是在我们的git仓库下会有一个.git配置文件夹，它里面包含git操作相关的一系列 <code>预处理／后处理</code> 脚本。如 <code>pre-commit</code> 、 <code>post-push</code> 之类的。<br>分为客户端钩子的和服务器端钩子。</p>
+<h3 id="如何安装钩子"><a href="#如何安装钩子" class="headerlink" title="如何安装钩子"></a>如何安装钩子</h3><p>钩子都被存储在 <code>Git</code> 目录下的 <code>hooks</code> 子目录中。 也即绝大部分项目中的 <code>.git/hooks</code> 。 当我们用 <code>git init</code> 初始化一个新版本库时，<code>Git</code> 默认会在这个目录中放置一些示例脚本。这些脚本除了本身可以被调用外，它们还透露了被触发时所传入的参数。<br>所有的示例都是 <code>shell</code> 脚本，其中一些还混杂了 <code>Perl</code> 代码，不过，任何正确命名的可执行脚本都可以正常使用 —— 你可以用 <code>Ruby</code> 或 <code>Python</code>，或其它语言编写它们。 这些示例的名字都是以 <code>.sample</code> 结尾，如果你想启用它们，得先移除这个后缀。</p>
+<p>把一个正确命名且可执行的文件放入 <code>Git</code> 目录下的 <code>hooks</code> 子目录中，即可激活该钩子脚本。 这样一来，它就能被 <code>Git</code> 调用。</p>
+<h3 id="客户端钩子"><a href="#客户端钩子" class="headerlink" title="客户端钩子"></a>客户端钩子</h3><p>提交工作流钩子、电子邮件工作流钩子和其它钩子</p>
+<h4 id="提交工作流钩子"><a href="#提交工作流钩子" class="headerlink" title="提交工作流钩子"></a>提交工作流钩子</h4><ol>
+<li>pre-commit</li>
+</ol>
+<p>钩子在键入提交信息前运行。<br>它用于检查即将提交的快照，例如，检查是否有所遗漏，确保测试运行，以及核查代码。<br>可以利用该钩子，来检查代码风格是否一致（运行类似 lint 的程序）、尾随空白字符是否存在（自带的钩子就是这么做的），或新方法的文档是否适当。</p>
+<ol start="2">
+<li>prepare-commit-msg</li>
+</ol>
+<p>钩子在启动提交信息编辑器之前，默认信息被创建之后运行。</p>
+<p>它允许你编辑提交者所看到的默认信息。 该钩子接收一些选项：存有当前提交信息的文件的路径、提交类型和修补提交的提交的 SHA-1 校验。</p>
+<ol start="3">
+<li>commit-msg</li>
+</ol>
+<p>钩子接收一个参数，此参数即上文提到的，存有当前提交信息的临时文件的路径。</p>
+<p>可以用来在提交通过前验证项目状态或提交信息。<br>我们使用该钩子来核对提交信息是否遵循指定的模板。</p>
+<ol start="4">
+<li>post-commit</li>
+</ol>
+<p>钩子在整个提交过程完成后运行。</p>
+<p>它不接收任何参数，但你可以很容易地通过运行 git log -1 HEAD 来获得最后一次的提交信息。 该钩子一般用于通知之类的事情。</p>
+<h3 id="服务端钩子"><a href="#服务端钩子" class="headerlink" title="服务端钩子"></a>服务端钩子</h3><p>放在 <code>Git Server</code> 上的 <code>Hooks</code> 脚本，作为管理员，可以利用这些服务端的脚本来强制确保项目的任何规范。<br>这些运行在服务端的脚本，会在push命令发生的前后执行。pre系列的脚本可以在任何时候返回非零值来终止某次push，并向push方返回一个错误。<br>可以比如监听 <code>git push</code> 来做消息通知，对接钉钉机器人，发送push的详细信息。</p>
+<h2 id="husky-哈士奇"><a href="#husky-哈士奇" class="headerlink" title="husky(哈士奇)"></a>husky(哈士奇)</h2><p><code>husky</code> 是一个对 <code>git hooks</code> 的封装，专门用来处理这种git提交时的自动化处理的插件。不过它只支持客户端钩子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev husky</span><br></pre></td></tr></table></figure></p>
+<p>原理：</p>
+<p>实现的机制大致是，在你install该插件时，它会自动往git hooks里埋入很多相应的钩子脚本(git hook能识别的)，<br>这些钩子函数会去读区package.json中的配置信息，当用户做某些git操作触发相应钩子时会自然去调用配置好的任务，从而实现我们的自动化需求，<br>包括代码检查跟单元测试验证以及更多的自动化任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// package.json</span><br><span class="line"></span><br><span class="line">&quot;husky&quot;: &#123;</span><br><span class="line">    &quot;hooks&quot;: &#123;</span><br><span class="line">        &quot;commit-msg&quot;: &quot;commitlint -E HUSKY_GIT_PARAMS&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 这样的话，每次commit的时候会执行 `commitlint -E HUSKY_GIT_PARAMS` 命令，使用 `commitlint` 的能力</span><br></pre></td></tr></table></figure>
+<p>小小提一嘴，还有个 <code>git钩子</code> 插件，叫 <code>pre-commit</code>。</p>
+<h2 id="步骤汇总"><a href="#步骤汇总" class="headerlink" title="步骤汇总"></a>步骤汇总</h2><ol>
+<li><p>在自己的项目的 <code>package.json</code> 里面的 <code>devDependencies</code> 中新增插件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @commitlint/config-conventional @commitlint/cli husky</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在项目根目录新建js文件 <code>commitlint.config.js</code> </p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  extends: [<span class="string">'@commitlint/config-conventional'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在自己的项目的 <code>package.json</code> 里面新增配置</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"dependencies"</span>: &#123;...&#125;,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;...&#125;,</span><br><span class="line">true<span class="string">"husky"</span>: &#123;</span><br><span class="line">truetrue<span class="string">"hooks"</span>: &#123;</span><br><span class="line">truetruetrue<span class="string">"commit-msg"</span>: <span class="string">"commitlint -E HUSKY_GIT_PARAMS"</span></span><br><span class="line">truetrue&#125;</span><br><span class="line">true&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://commitlint.js.org/#/guides-local-setup" target="_blank" rel="noopener">commitlint.js</a></li>
+<li><a href="https://www.git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90" target="_blank" rel="noopener">Git 钩子</a></li>
+<li><a href="https://github.com/typicode/husky" target="_blank" rel="noopener">husky</a></li>
+<li><a href="https://www.cnblogs.com/StitchSun/articles/4712287.html" target="_blank" rel="noopener">Git Hooks简介</a></li>
+</ol>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

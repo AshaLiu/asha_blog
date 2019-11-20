@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      CSS之流、元素、基本尺寸 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="css的历史环境css的全称是 Cascading Style Sheets，翻译成中文是 层叠样式表。所谓 层叠，意思是样式可以层层叠加，比如说，一个页面的元素都继承了12像素的大小，某标题就可以设置成14像素进行叠加，后面写的样式可以覆盖先前写的同名样式，相当灵活。css1 1996.12.17css2 1998.5.12 推行内容和表现分离，table布局开始落寞css3 2001.5.2">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS之流、元素、基本尺寸 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2019/06/02/Css之流、元素、基本尺寸/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="css的历史环境css的全称是 Cascading Style Sheets，翻译成中文是 层叠样式表。所谓 层叠，意思是样式可以层层叠加，比如说，一个页面的元素都继承了12像素的大小，某标题就可以设置成14像素进行叠加，后面写的样式可以覆盖先前写的同名样式，相当灵活。css1 1996.12.17css2 1998.5.12 推行内容和表现分离，table布局开始落寞css3 2001.5.2">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS之流、元素、基本尺寸 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="css的历史环境css的全称是 Cascading Style Sheets，翻译成中文是 层叠样式表。所谓 层叠，意思是样式可以层层叠加，比如说，一个页面的元素都继承了12像素的大小，某标题就可以设置成14像素进行叠加，后面写的样式可以覆盖先前写的同名样式，相当灵活。css1 1996.12.17css2 1998.5.12 推行内容和表现分离，table布局开始落寞css3 2001.5.2">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">CSS之流、元素、基本尺寸</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-06-02" class="post-meta__date date">2019-06-02</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/css/">css</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><a name="04f9d6ef"></a></p>
+<h3 id="css的历史环境"><a href="#css的历史环境" class="headerlink" title="css的历史环境"></a>css的历史环境</h3><p>css的全称是 <code>Cascading Style Sheets</code>，翻译成中文是 <code>层叠样式表</code>。所谓 <code>层叠</code>，意思是样式可以层层叠加，比如说，一个页面的元素都继承了12像素的大小，某标题就可以设置成14像素进行叠加，后面写的样式可以覆盖先前写的同名样式，相当灵活。<br>css1 1996.12.17<br>css2 1998.5.12 推行内容和表现分离，table布局开始落寞<br>css3 2001.5.23 主要包括盒子模型、列表模块、超链接方式、语言模块、背景和边框、文字特效、多栏布局等模块<br>css世界的诞生就是为图文信息展示服务的。</p>
+<p><a name="37a29af0"></a></p>
+<h3 id="文档流"><a href="#文档流" class="headerlink" title="文档流"></a>文档流</h3><p><code>流</code> 是CSS世界中的一种基本的定位和布局机制，可以理解为现实时间的一套物理规则， <code>流</code> 和现实世界的 <code>水流</code> 有异曲同工的表现。<br>eg:<br>拿 <code>div</code> 和 <code>span</code> 举例，分别是 <code>块级元素</code> 和 <code>内联元素</code>，分别对应容器里的水和木头，水是自动铺满容器的，木头依次排列。<br>所以， <code>流</code> 就是 CSS 世界中 引导元素排列和定位 的一条看不见的 <code>水流</code>。</p>
+<p><a name="4b3dca1d"></a></p>
+<h4 id="流是如何影响整个CSS世界的（CSS是如何设计的？）"><a href="#流是如何影响整个CSS世界的（CSS是如何设计的？）" class="headerlink" title="流是如何影响整个CSS世界的（CSS是如何设计的？）"></a>流是如何影响整个CSS世界的（CSS是如何设计的？）</h4><p>整个CSS世界几乎就是围绕流来建立的。<br>那么流是如何影响整个CSS世界的？</p>
+<ol>
+<li>让 <code>HTML</code> 默认的表现符合 <code>流</code>，（CSS是继承层叠的）</li>
+<li>实现复杂的布局，就要打破坏 <code>流</code></li>
+<li>改变流向，默认的流向是从左往右，自上而下</li>
+</ol>
+<p><a name="f4c99e12"></a></p>
+<h4 id="流体布局"><a href="#流体布局" class="headerlink" title="流体布局"></a>流体布局</h4><p>指的是利用元素 <code>流</code> 的特性实现的各类布局效果。 <code>流</code> 本身都具有自适应性， 所以流体布局是也是有自适应性的。但是 <code>流体布局</code> ≠ <code>自适应布局</code>。自适应布局是对具有自适应特性的一类布局的统称。<br>所以，自适应布局 &gt; 流体布局。</p>
+<p><a name="521d4cf5"></a></p>
+<h3 id="未定义行为"><a href="#未定义行为" class="headerlink" title="未定义行为"></a>未定义行为</h3><p>在我们日常排版中，会遇到某些css在不同浏览器表现形式不一致的情况，会认为是某个浏览器的bug。<br>需要转变一下想法，web标准不会面面俱到的，规范描述未触达的地方，需要各个浏览器厂商自己去想象。<br>比如 <a href="https://demo.cssworld.cn/2/2-1.php" target="_blank" rel="noopener">FireFox mousedown干掉:active实例页面</a><br>FireFox认为:active发生在mousedown事件之后</p>
+<p><a name="942e72cd"></a></p>
+<h3 id="流、元素与基本尺寸"><a href="#流、元素与基本尺寸" class="headerlink" title="流、元素与基本尺寸"></a>流、元素与基本尺寸</h3><p>HTML通常分为两类：块级元素和内联元素</p>
+<p><a name="9d062fd9"></a></p>
+<h4 id="块级元素-（block-level-element）"><a href="#块级元素-（block-level-element）" class="headerlink" title="块级元素 （block-level element）"></a>块级元素 （block-level element）</h4><p>基本特征： 一个水平流上只能单独显示一个元素（也不用占满，比如 <code>&lt;table&gt;</code> 的宽度是由内容决定大小的，就算只有一列，也自己独占一行），多个块级元素则换行显示。<br>常见的块级元素有 <code>&lt;div&gt;</code> 、 <code>&lt;li&gt;</code> 、 <code>&lt;table&gt;</code> ，注意 <code>块级元素</code> 和 <code>display: block</code> 不是一个概念。<br>比如 <code>&lt;li&gt;</code> 元素的display的默认值是list-item， <code>&lt;table&gt;</code> 元素的display的默认值是table，但是他们都叫 <code>块级元素</code> ，因为他们都符合块级元素的基本特征。<br>作用：<br>由于 <code>块级元素</code> 具有换行特性，所以理论上它都可以配合  <code>clear</code> 属性来清除浮动带来的影响<br>clear属性是float的克星，官方属性解释： <code>元素盒子的边不能和前面的浮动元素相邻</code>。其值为 <code>none | left | right | both</code><br>clear属性只有块级元素才有效的，而我们平常都会写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clear:after&#123;</span><br><span class="line">    content: <span class="string">''</span>;</span><br><span class="line">    display: table; <span class="comment">// 也可以是block，或者list-item</span></span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是在实际开发中，我们不会用list-item来清除浮动</p>
+<ol>
+<li>字符比较多</li>
+<li>会出现不需要的项目符号，需要加list-style: none来去除</li>
+<li>IE不支持伪元素的display的值为list-item</li>
+</ol>
+<p><a name="0ba47d0a"></a></p>
+<h3 id="盒子的类型"><a href="#盒子的类型" class="headerlink" title="盒子的类型"></a>盒子的类型</h3><p>盒子的类型种类是不断迭代的。</p>
+<ol>
+<li>块级盒子<br><br>负责结构</li>
+<li>内联盒子<br><br>负责内容，不管结构，比如 <code>&lt;span&gt;</code> 直接设置 height或者width是没有用的</li>
+<li>附加盒子（标记盒子marker box）<br><br>比如，因为引入 <code>&lt;ul&gt;、&lt;ol&gt;、&lt;li&gt;</code>标签，需要显示项目符号，所以新增了一个新的 <code>display</code> 属性值 <code>list-item</code>，<br><br><code>&lt;li&gt;</code> 标签的默认的 <code>display</code> 属性值就是 <code>list-item</code>。<br><br>所以在之前两个盒子的基础之上，所有 <code>块级元素</code> 都有一个 <code>主块级盒子</code>，而list-item除此之外还有一个 <code>附加盒子</code>。</li>
+<li>外在盒子和内在盒子<br><br>display的值又出现了 <code>inline-block</code>，它的表现是穿着inline的皮藏着block的心，之前定义的盒子没法儿解释这个现象，<br><br>然后导致每个元素都用两个盒子表示：<code>外在盒子和内在盒子</code> 。<br><br>外在盒子负责元素是可以一行显示，还是只能换行显示（即体现元素是内联元素还是块级元素）；内在盒子负责宽高、内容呈现等。（内在盒子又称为“容器盒子”）<br><br>对标兼容解释：<br><br><code>display: block</code> 的元素的盒子由外在的“块级盒子”和内在的“块级容器盒子”组成，<br><br><code>display: inline-block</code> 的元素则由外在的“内联盒子”和内在的“块级容器盒子”组成，<br><br><code>display: inline</code> 的元素则内外均是“内联盒子”。<br><br>所以display属性值是inline-block的元素既能和图文一行显示，又能直接设置width/height （作用在内在盒子上），<br><br>因为有两个盒子，外面的盒子是inline级别，里面的盒子是block级别。<br><br>测试：<br><br><code>display: inline-table</code> 的表现形式<br><br>外面是 <code>内联盒子</code> ，里面是 <code>table盒子</code>，得到一个可以和文字在一行显示的表格。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">HTML</span><br><span class="line">和文字平起平坐的表格：</span><br><span class="line">&lt;table <span class="class"><span class="keyword">class</span></span>=<span class="string">"inline-table"</span>&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;th&gt;<span class="number">1</span>&lt;<span class="regexp">/th&gt;</span></span><br><span class="line"><span class="regexp">    &lt;th&gt;2&lt;/</span>th&gt;</span><br><span class="line">  &lt;<span class="regexp">/tr&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>table&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"inline-table"</span>&gt;</span><br><span class="line">    &lt;p&gt;第<span class="number">1</span>列&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;第2列&lt;/</span>p&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">CSS</span></span><br><span class="line"><span class="regexp">.inline-table &#123;</span></span><br><span class="line"><span class="regexp">    display: inline-table;</span></span><br><span class="line"><span class="regexp">    width: 128px;</span></span><br><span class="line"><span class="regexp">    margin-left: 10px;</span></span><br><span class="line"><span class="regexp">    border: 1px solid #cad5eb;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">.inline-table &gt; p &#123;</span></span><br><span class="line"><span class="regexp">    display: table-cell;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><a name="fb01b166"></a></p>
+<h3 id="width-height作用在哪个盒子上"><a href="#width-height作用在哪个盒子上" class="headerlink" title="width/height作用在哪个盒子上"></a>width/height作用在哪个盒子上</h3><p>内在盒子上</p>
+<p><a name="d3b60f07"></a></p>
+<h3 id="width-auto"><a href="#width-auto" class="headerlink" title="width:auto;"></a>width:auto;</h3><p>css中，width的默认值是auto。但是它的表现形式有4种。</p>
+<p><a name="2fab8449"></a></p>
+<h4 id="充分利用可用空间"><a href="#充分利用可用空间" class="headerlink" title="充分利用可用空间"></a>充分利用可用空间</h4><p>width: -webkit-fill-available;<br>比如 <code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>这种块级元素的宽度默认是 100%于父级容器的</p>
+<p><a name="7722eda8"></a></p>
+<h4 id="收缩与包裹"><a href="#收缩与包裹" class="headerlink" title="收缩与包裹"></a>收缩与包裹</h4><p>width: -webkit-fit-content;<br>收缩到合适，比如浮动，绝对定位，inline-block元素或者table元素</p>
+<p><a name="a137409f"></a></p>
+<h4 id="收缩到最小"><a href="#收缩到最小" class="headerlink" title="收缩到最小"></a>收缩到最小</h4><p>width: -webkit-min-content;<br>这个最容易出现在table-layout为automatic的<a href="https://demo.cssworld.cn/3/2-1.php" target="_blank" rel="noopener">表格</a>中<br>当每一列空间都不够的时候，文字能断就断，但是中文是可以随便断的，英文单词不能断</p>
+<p><a name="69d5825b"></a></p>
+<h4 id="超出容器限制"><a href="#超出容器限制" class="headerlink" title="超出容器限制"></a>超出容器限制</h4><p>width: -webkit-max-content;<br>比如<a href="https://demo.cssworld.cn/3/2-2.php" target="_blank" rel="noopener">内容很长的连续的英文和数字</a>，或者内联元素被设置了 <code>white-space: nowrap;</code></p>
+<p><a name="399d24f3"></a></p>
+<h3 id="CSS的尺寸"><a href="#CSS的尺寸" class="headerlink" title="CSS的尺寸"></a>CSS的尺寸</h3><p>CSS尺寸分为内部尺寸和外部尺寸</p>
+<p><a name="955b5f26"></a></p>
+<h4 id="外部尺寸"><a href="#外部尺寸" class="headerlink" title="外部尺寸"></a>外部尺寸</h4><p>表示宽度由外部元素决定（上面四种情况表现，只有第一种是外部尺寸）</p>
+<p><a name="bc06a996"></a></p>
+<h5 id="正常流宽度"><a href="#正常流宽度" class="headerlink" title="正常流宽度"></a>正常流宽度</h5><p>在页面中随便扔一个 <code>&lt;div&gt;</code> 元素，其尺寸表现就会铺满容器，这个是块级元素的流特性。<br>所以在页面中丢一个 <code>&lt;a&gt;</code> 元素，设置其css <code>display</code> 属性的值为 <code>block</code>，就不用同时指定width，因为它会自动铺满容器。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a &#123;</span><br><span class="line">    width: <span class="number">100</span>%;</span><br><span class="line">    display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的这个实例代码很常见，在写一个PC的导航栏， <code>.nav &gt; a</code>，很多人会像上面代码示例一样这么写， 但实际上，这个width是没有出现的必要的。<br>并且，一旦给这个 <code>&lt;a&gt;</code> 设置了 <code>width</code> ，元素的流动反而会丢失。<br>所谓的流动性，并不是单纯表现形式上宽度100%这么简单，而是一种 <code>margin/border/padding</code> 和 <code>content</code> 内容区域自动分配水平空间的机制。<br>换言之：无论设置padding还是margin，其占据的空间一直不变，变化的就是content box的尺寸，这是典型的流体表现特性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav"</span>&gt;</span><br><span class="line">  &lt;a href=<span class="string">"javascript:;"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-a"</span>&gt;导航栏一&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">  &lt;a href="javascript:;" class="nav-a"&gt;导航栏二&lt;/</span>a&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp">&lt;div class="nav"&gt;</span></span><br><span class="line"><span class="regexp">  &lt;a href="javascript:;" class="nav-a width-100"&gt;导航栏一&lt;/</span>a&gt;</span><br><span class="line">  &lt;a href=<span class="string">"javascript:;"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-a width-100"</span>&gt;导航栏二&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">.width<span class="number">-100</span> &#123;</span><br><span class="line">  width: <span class="number">100</span>%;</span><br><span class="line">&#125;</span><br><span class="line">.nav &#123;</span><br><span class="line">  width: <span class="number">240</span>px;</span><br><span class="line">  background-color: #cd0000;</span><br><span class="line">&#125;</span><br><span class="line">.nav-a &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  margin: <span class="number">0</span> <span class="number">10</span>px;</span><br><span class="line">  padding: <span class="number">9</span>px <span class="number">10</span>px;</span><br><span class="line">  border-bottom: 1px solid #b70000;</span><br><span class="line">  border-top: 1px solid #de3636;</span><br><span class="line">  color: #fff;</span><br><span class="line">&#125;</span><br><span class="line">.nav-a:first-child &#123; border-top: <span class="number">0</span>; &#125;</span><br><span class="line">.nav-a + .nav-a + .nav-a &#123; border-bottom: <span class="number">0</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>事实上，第一个导航栏的审查元素宽度是220px，但是看上去是100%填充；第二个的导航栏审查元素宽度是260px</p>
+<p><a name="837f2f39"></a></p>
+<h5 id="格式化宽度"><a href="#格式化宽度" class="headerlink" title="格式化宽度"></a>格式化宽度</h5><p>格式化宽度仅仅出现在 <code>绝对定位模型</code> 中，也就是出现在 <code>position: absolute/fixed</code>的元素中。<br>当然在默认情况下，绝对定位元素的宽度的表现应该是包裹性，即宽度由内部尺寸决定。<br>但是对于 <code>非替代元素</code>，当 <code>left/right</code> 或 <code>top/bottom</code> 对立方的属性值同时存在时，元素的宽度表现为 <code>格式化宽度</code>， 其宽度大小相对于最近的具有定位特性（position的属性值不是static）的祖先元素计算。<br>格式化宽度也具有完全的流体特性，也就是 <code>margin/border/padding</code> 和 <code>content</code> 内容区域自动分配水平（和垂直）空间。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav-child"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">.nav &#123;</span></span><br><span class="line"><span class="regexp">  width: 200px;</span></span><br><span class="line"><span class="regexp">  height: 200px;</span></span><br><span class="line"><span class="regexp">  background-color: #cd0000;</span></span><br><span class="line"><span class="regexp">  position: relative;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">.nav-child &#123;</span></span><br><span class="line"><span class="regexp">  background:green;</span></span><br><span class="line"><span class="regexp">  position: absolute;</span></span><br><span class="line"><span class="regexp">  height: 100px;</span></span><br><span class="line"><span class="regexp">  left: 0;</span></span><br><span class="line"><span class="regexp">  right: 0;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><a name="ac28782a"></a></p>
+<h4 id="内部尺寸"><a href="#内部尺寸" class="headerlink" title="内部尺寸"></a>内部尺寸</h4><p>表示宽度由内部元素决定</p>
+<p><a name="b98cfa19"></a></p>
+<h5 id="包裹性（包裹-自适应）"><a href="#包裹性（包裹-自适应）" class="headerlink" title="包裹性（包裹+自适应）"></a>包裹性（包裹+自适应）</h5><p>所谓 <code>自适应性</code>，指的是元素尺寸由内部元素元素决定，但永远小于 <code>包含块</code> 容器的尺寸（除非！容器尺寸比元素的首选最小宽度还小）<br>换言之，包裹性元素有个max-width: 100%;来罩着。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">例子一：</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"nav"</span>&gt;</span><br><span class="line">  匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速匀速</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;div class="nav"&gt;</span></span><br><span class="line"><span class="regexp">121122212112221211222121122212112221211222121122212112221211222</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">.nav &#123;</span><br><span class="line">  background-color: #cd0000;</span><br><span class="line">  display: inline-block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果nav容器的width写死，100px，再看看效果，就会触发上面的除非特例</span></span><br></pre></td></tr></table></figure>
+<p>类似的 <code>&lt;button&gt;</code> 也是有上述效果的，它是典型的 inline-block元素<br>容器的文字越多宽度越宽（内部尺寸特性），但是如果文字足够多，则会在容器的宽度处自动换行<br>作用：<br>需求： 页面某个模块的文字内容是动态的，设计师经常希望我们做处理，字数少的时候居中显示，文字超过一行的时候居左显示。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span>&gt;</span><br><span class="line">  &lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"content"</span>&gt;文字内容-新增文字-新增文字-新增文字-新增文字-新增文字-新增文字&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"content"</span>&gt;文字&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">.box &#123;</span><br><span class="line">  padding: <span class="number">10</span>px;</span><br><span class="line">  width: <span class="number">200</span>px;</span><br><span class="line">  background-color: #cd0000;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.content &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  text-align: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="97f40493"></a></p>
+<h5 id="首选最小宽度"><a href="#首选最小宽度" class="headerlink" title="首选最小宽度"></a>首选最小宽度</h5><p>指的是元素最适合的最小宽度。<br>假如上面例子的box元素宽度是由200px变成0，那么此时子元素content的宽度会是怎么样呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span>&gt;</span><br><span class="line">  &lt;p <span class="class"><span class="keyword">class</span></span>=<span class="string">"content"</span>&gt;文字内容-新增文字-新增文字-新增文字-新增文字-新增文字-新增文字&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span>&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"content"</span>&gt;文字&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">.box &#123;</span><br><span class="line">  padding: <span class="number">10</span>px;</span><br><span class="line">  width: <span class="number">0</span>;</span><br><span class="line">  background-color: #cd0000;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.content &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  text-align: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>表现形式是，中文字会被一个个断开，英文字会按照单词来断开，如果设置了word-break: break-all;那么表现的也会像中文字一样。<br>此时content元素的宽度为尽可能的最小宽度。<br>eg：可以用来凹造型，排版一个凹凸造型</p>
+<p><a name="99b57d8c"></a></p>
+<h5 id="最大宽度"><a href="#最大宽度" class="headerlink" title="最大宽度"></a>最大宽度</h5><p>指的是元素可以有的最大宽度<br>“最大宽度”实际等于”包裹性”元素设置了 <code>white-space: nowrap;</code> 之后的宽度。<br>具体计算：如果内部没有块级元素，或者块级元素没有设定宽度值，则”最大宽度”实际上是最大的连续内联盒子的宽度。<br>最常见的作用<a href="https://demo.cssworld.cn/3/2-7.php" target="_blank" rel="noopener">不用js的横向scroll</a></p>
+<p><a name="fd349c3c"></a></p>
+<h3 id="width值的作用"><a href="#width值的作用" class="headerlink" title="width值的作用"></a>width值的作用</h3><p>之前说过内在盒子负责宽高，内容呈现，所以可以说width是作用在 <code>内在盒子</code> 上的。<br>内在盒子的组成（盒模型）：margin（透明）+ border + padding + content<br>内在盒子又被分成了4个盒子，分别是 <code>content box</code> 、 <code>padding box</code> 、 <code>border-box</code> 、 <code>margin box</code>。<br>这四个盒子在CSS中也有对应的名字， <code>content-box</code> 、 <code>padding-box</code> 、 <code>border-box</code> ，就是没有 <code>margin-box</code> ，<br>因为 <code>margin的背景永远是透明的</code> ，margin设定具体的值，也不会影响本身的尺寸。因为它是透明的，看不见，没有感觉。因此作为 <code>box-sizing</code> 的属性值就没有了意义，然后就被抛弃了。<br>padding-box 之前火狐支持过<br>CSS2.1规定，content box 环绕着width 和 height给定的矩形。<br>换言之，就是说content box的宽高就是这个元素设置CSS的width、height的值。<br><code>box-sizing</code> 的默认值是 <code>content-box</code> 也就好记了。<br>给元素设置了具体的width之后，会使流动性丢失，需要我们自己去计算宽度排版。</p>
+<p><a name="587c60d4"></a></p>
+<h3 id="height-100"><a href="#height-100" class="headerlink" title="height: 100%;"></a>height: 100%;</h3><p>对于width属性，就算父元素的width为auto, 其百分比也是支持的。但是，对于height属性，如果父元素的height为auto，只要子元素还在文档流中，其百分比值是没有用的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在页面里插入一个&lt;div&gt;，然后满屏显示背景图</span></span><br><span class="line">div &#123;</span><br><span class="line">    width: <span class="number">100</span>%; <span class="comment">// 这是多余的，块级元素会自动铺满，流的特性</span></span><br><span class="line">    height: <span class="number">100</span>%; <span class="comment">// 这是无效的</span></span><br><span class="line">    background: url(bg.jpg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为什么 <code>height: 100%;</code> 是无效的？<br>因为CSS规范中，说如果包含块的高度没有显示指定（即高度由内容决定），并且该元素不是绝对定位，则计算值为auto。<br>auto <em> 百分比  = NAN<br>而宽度，规则中没有明确说是auto，需要各个浏览器自己去理解发挥（未定义行为）。不过所有的浏览器的理解表现恰巧是一样的。<br>因为宽度设置百分比，会拿真实的计算值 </em> 百分比。</p>
+<p><a name="ba6fecf9"></a></p>
+<h4 id="如何使height-100-有效"><a href="#如何使height-100-有效" class="headerlink" title="如何使height: 100%有效"></a>如何使height: 100%有效</h4><ol>
+<li>给父元素设置显示的高度值，height: 600px;</li>
+<li><a href="https://demo.cssworld.cn/3/2-11.php" target="_blank" rel="noopener">使用绝对定位</a></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">    height: <span class="number">100</span>%;</span><br><span class="line">    position: absolute;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 绝对定位的宽高百分比是相对于 padding box的</span></span><br><span class="line"><span class="comment">// 非绝对定位则是相对于 content box的</span></span><br></pre></td></tr></table></figure>
+<p><a name="a7d1b6da"></a></p>
+<h3 id="min-width-max-width和min-height-max-height"><a href="#min-width-max-width和min-height-max-height" class="headerlink" title="min-width/max-width和min-height/max-height"></a>min-width/max-width和min-height/max-height</h3><p>min-width/min-height的默认值是auto<br>max-width/max-height的默认值是none</p>
+<p><a name="5eb8ef43"></a></p>
+<h4 id="相互覆盖规则"><a href="#相互覆盖规则" class="headerlink" title="相互覆盖规则"></a>相互覆盖规则</h4><ol>
+<li>超越!important</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">"width: 300px !important;"</span>&gt;</span><br><span class="line">div &#123;</span><br><span class="line">    max-width: <span class="number">200</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>超越最大</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">div &#123;</span><br><span class="line">    min-width: <span class="number">1300</span>px;</span><br><span class="line">    max-width: <span class="number">1000</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需求：css做不确定高度的div展开收起动画</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.element &#123;</span><br><span class="line">  height: <span class="number">0</span>;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  transition: height <span class="number">.25</span>s;</span><br><span class="line">&#125;</span><br><span class="line">.element.active &#123;</span><br><span class="line">  height: auto; <span class="comment">// 没有动画，因为auto无法计算</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.element &#123;</span><br><span class="line">  max-height: <span class="number">0</span>;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">  transition: max-height <span class="number">.25</span>s;</span><br><span class="line">&#125;</span><br><span class="line">.element.active &#123;</span><br><span class="line">  max-height: <span class="number">666</span>px;  <span class="comment">// 一个相对足够大的最大高度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

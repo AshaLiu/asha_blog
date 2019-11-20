@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      类数组 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="前言啥都是从前言开始说的。之前一直以为类数组就是HTML集合，今天才发现其实不是的，是我理解偏了。 定义啥叫类数组？类数组：有length属性，但是不是数组，没有数组的方法，比如forEach、map、slice。不过其实想要它们能拥有数组的方法也不是不可以，咱们有call()。不过由于兼容性的问题，不同浏览器会有不同的操作。 类数组的例子函数的arguments对象arguments是函数对象的">
+<meta name="keywords" content="类数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类数组 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2016/12/14/类数组/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="前言啥都是从前言开始说的。之前一直以为类数组就是HTML集合，今天才发现其实不是的，是我理解偏了。 定义啥叫类数组？类数组：有length属性，但是不是数组，没有数组的方法，比如forEach、map、slice。不过其实想要它们能拥有数组的方法也不是不可以，咱们有call()。不过由于兼容性的问题，不同浏览器会有不同的操作。 类数组的例子函数的arguments对象arguments是函数对象的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.331Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="类数组 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="前言啥都是从前言开始说的。之前一直以为类数组就是HTML集合，今天才发现其实不是的，是我理解偏了。 定义啥叫类数组？类数组：有length属性，但是不是数组，没有数组的方法，比如forEach、map、slice。不过其实想要它们能拥有数组的方法也不是不可以，咱们有call()。不过由于兼容性的问题，不同浏览器会有不同的操作。 类数组的例子函数的arguments对象arguments是函数对象的">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">类数组</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-12-14" class="post-meta__date date">2016-12-14</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/类数组/">类数组</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>啥都是从前言开始说的。之前一直以为类数组就是HTML集合，今天才发现其实不是的，是我理解偏了。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>啥叫类数组？<br>类数组：有length属性，但是不是数组，没有数组的方法，比如forEach、map、slice。不过其实想要它们能拥有数组的方法也不是不可以，咱们有call()。不过由于兼容性的问题，不同浏览器会有不同的操作。</p>
+<h3 id="类数组的例子"><a href="#类数组的例子" class="headerlink" title="类数组的例子"></a>类数组的例子</h3><h4 id="函数的arguments对象"><a href="#函数的arguments对象" class="headerlink" title="函数的arguments对象"></a>函数的arguments对象</h4><p>arguments是函数对象的内置参数。它是函数/方法在执行过程中，由传入的参数所组成的一个对象，系统内置的，可以调用。和函数声明时的参数无关（函数声明时，即使没有声明参数也不影响arguments的使用）。<br>arguments有两个属性：length（获取arguments对象的长度）和callee（引用当前正在执行的函数）</p>
+<h4 id="HTMLCollection对象"><a href="#HTMLCollection对象" class="headerlink" title="HTMLCollection对象"></a>HTMLCollection对象</h4><p>HTMLCollection 是一个接口，表示 HTML 元素的集合，它提供了可以遍历列表的方法和属性。<br>HTMLCollection 对象是带有方法的 HTML 元素的集合，用它可以通过元素在文档中的位置或它们的 id 属性、name 属性获取元素。在 JavaScript 中，HTMLCollection 对象的行为和只读数组一样，可以使用 JavaScript 的方括号，通过编号或名称索引一个 HTMLCollection 对象<br>HTMLCollection 对象是只读的，不能给它添加新元素</p>
+<ul>
+<li>document.images：[object HTMLCollection]</li>
+<li>document.links：[object HTMLCollection</li>
+<li>document.anchors：[object HTMLCollection]</li>
+<li>document.forms：[object HTMLCollection]</li>
+<li>document.scripts：[object HTMLCollection]</li>
+<li>document.applets：[object HTMLCollection]</li>
+<li>document.embeds：[object HTMLCollection]</li>
+<li>document.plugins：[object HTMLCollection]</li>
+<li>document.getElementById(‘table’).children：[object HTMLCollection]</li>
+<li>document.getElementById(‘table’).tBodies：[object HTMLCollection]</li>
+<li>document.getElementById(‘table’).rows：[object HTMLCollection]</li>
+<li>document.getElementById(‘row’).cells：[object HTMLCollection]</li>
+<li>document.getElementById(‘Map’).areas：[object HTMLCollection]</li>
+<li>document.all：[object HTMLAllCollection]</li>
+<li>document.getElementById(‘form’).elements：[object HTMLFormControlsCollection]</li>
+<li>document.getElementById(‘select’).options：[object HTMLOptionsCollection]</li>
+<li>document.getElementsByClassName(‘box’)：[object HTMLCollection]</li>
+<li>document.getElementsByTagName(‘div’)：[object HTMLCollection]</li>
+<li>document.getElementsByTagNameNS(‘*’, ‘a’)：[object HTMLCollection]</li>
+</ul>
+<p>HTMLCollection 对象的方法</p>
+<ul>
+<li>item(index)  ——  返回集合中指定位置的元素（节点）</li>
+<li>namedItem(attrName) ——  返回集合中 name 属性或 id 属性具有指定值的元素（节点）</li>
+</ul>
+<h4 id="NodeList对象"><a href="#NodeList对象" class="headerlink" title="NodeList对象"></a>NodeList对象</h4><p>NodeList 对象代表一个有顺序的节点列表。<br>我们可通过节点列表中的节点索引号来访问列表中的节点（索引号由0开始）。<br>节点列表可保持其自身的更新。如果节点列表或 XML 文档中的某个元素被删除或添加，列表也会被自动更新。</p>
+<ul>
+<li>document.getElementsByName(‘testbox’)：[object NodeList]</li>
+<li>document.querySelectorAll(‘a’)：[object NodeList]</li>
+<li>document.getElementById(‘table’).childNodes：[object NodeList]</li>
+<li>document.styleSheets：[object StyleSheetList]</li>
+</ul>
+<p>HTMLCollection 对象和 NodeList 对象很相似，但前者可能既能用名称索引也能用数字索引。</p>
+<h3 id="类数组转化数组"><a href="#类数组转化数组" class="headerlink" title="类数组转化数组"></a>类数组转化数组</h3><h4 id="arguments对象"><a href="#arguments对象" class="headerlink" title="arguments对象"></a>arguments对象</h4><p>arguements的数组化，只需要运用[].slice.call(),方法便可以将传递给函数的参数数组化：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> args=[].slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="built_in">console</span>.dir(args);<span class="comment">//[10,20] 参数被转化成数组</span></span><br><span class="line">&#125;</span><br><span class="line">Person(<span class="number">10</span>,<span class="number">20</span>);</span><br></pre></td></tr></table></figure></p>
+<p>####HTMLCollection和NodeList<br>对于这两个类数组对象的元素集合，如果我们使用[].slice.call()的方式，我们发现IE8及以下的浏览器会报错，报错的内容是：”Array.prototype.slice: ‘this’ 不是 JavaScript 对象”,很明显的我们发现低版本的IE浏览器的HTMLCollection和Nodelist并是不是Object的子类。所以为了让类数组转化成纯数组，我们需要进行一定的处理，借鉴几个类库的写法，我们可以：</p>
+<ul>
+<li>jQuery的早期makeArray的做法：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> div=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"div"</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeArray</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ret = [];</span><br><span class="line">    <span class="keyword">if</span>( array != <span class="literal">null</span> )&#123;</span><br><span class="line">    <span class="keyword">var</span> i = array.length;</span><br><span class="line">        <span class="comment">// The window, strings (and functions) also have 'length'</span></span><br><span class="line">        <span class="keyword">if</span>( i == <span class="literal">null</span> || <span class="keyword">typeof</span> array === <span class="string">"string"</span> || array.setInterval )</span><br><span class="line">            ret[<span class="number">0</span>] = array;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">while</span>( i )</span><br><span class="line">                ret[--i] = array[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr=makeArray(div);</span><br><span class="line"><span class="built_in">console</span>.dir(arr)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Prototype的makeArray的做法：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这部分主流高版本的浏览器就会使用这个函数</span></span><br><span class="line"><span class="keyword">var</span> makeArray = <span class="function"><span class="keyword">function</span>(<span class="params">array, results</span>) </span>&#123;</span><br><span class="line">    array = <span class="built_in">Array</span>.prototype.slice.call( array, <span class="number">0</span> );</span><br><span class="line">    <span class="keyword">if</span> ( results ) &#123;</span><br><span class="line">        results.push.apply( results, array );</span><br><span class="line">        <span class="keyword">return</span> results;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//对于低版本的浏览器进行探测，IE8及以下浏览器就会使用下面重载的makeArray</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="built_in">Array</span>.prototype.slice.call( <span class="built_in">document</span>.documentElement.childNodes, <span class="number">0</span> );</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    makeArray = <span class="function"><span class="keyword">function</span>(<span class="params">array, results</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> ret = results || [];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ( toString.call(array) === <span class="string">"[object Array]"</span> ) &#123;</span><br><span class="line">            <span class="built_in">Array</span>.prototype.push.apply( ret, array );</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> ( <span class="keyword">typeof</span> array.length === <span class="string">"number"</span> ) &#123;</span><br><span class="line">                <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, l = array.length; i &lt; l; i++ ) &#123;</span><br><span class="line">                    ret.push( array[i] );</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; array[i]; i++ ) &#123;</span><br><span class="line">                    ret.push( array[i] );</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://wnworld.com/archives/211.html" target="_blank" rel="noopener">js的类数组对象HTMLCollection,NodeList,arguments</a><br><a href="http://www.w3school.com.cn/xmldom/dom_nodelist.asp" target="_blank" rel="noopener">XML DOM - NodeList 对象</a><br><a href="http://www.w3school.com.cn/xmldom/dom_htmlcollection.asp" target="_blank" rel="noopener">XML DOM HTMLCollection 对象</a></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

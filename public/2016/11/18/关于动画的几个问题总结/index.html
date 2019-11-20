@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      关于动画的几个问题总结 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="1. 前言大家应该经常会看见一些企业的运营小活动网页，这些活动通常只有几屏内容，每切换一张，里面的内容，图片会做相应的动画飘入。这就是我今天要讲的内容。 2. 动画实现的几种方法 CSS3属性transition 利用setTimeout间隔的移动节点 jQuery的animate方法 rquestAnimationFrame  2.1 transition主要用在单页面，比较独立的动画上面 12">
+<meta name="keywords" content="动画 原创">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于动画的几个问题总结 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2016/11/18/关于动画的几个问题总结/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="1. 前言大家应该经常会看见一些企业的运营小活动网页，这些活动通常只有几屏内容，每切换一张，里面的内容，图片会做相应的动画飘入。这就是我今天要讲的内容。 2. 动画实现的几种方法 CSS3属性transition 利用setTimeout间隔的移动节点 jQuery的animate方法 rquestAnimationFrame  2.1 transition主要用在单页面，比较独立的动画上面 12">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于动画的几个问题总结 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="1. 前言大家应该经常会看见一些企业的运营小活动网页，这些活动通常只有几屏内容，每切换一张，里面的内容，图片会做相应的动画飘入。这就是我今天要讲的内容。 2. 动画实现的几种方法 CSS3属性transition 利用setTimeout间隔的移动节点 jQuery的animate方法 rquestAnimationFrame  2.1 transition主要用在单页面，比较独立的动画上面 12">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">关于动画的几个问题总结</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-11-18" class="post-meta__date date">2016-11-18</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/动画-原创/">动画 原创</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h1><p>大家应该经常会看见一些企业的运营小活动网页，这些活动通常只有几屏内容，每切换一张，里面的内容，图片会做相应的动画飘入。这就是我今天要讲的内容。</p>
+<h1 id="2-动画实现的几种方法"><a href="#2-动画实现的几种方法" class="headerlink" title="2. 动画实现的几种方法"></a>2. 动画实现的几种方法</h1><ol>
+<li>CSS3属性transition</li>
+<li>利用setTimeout间隔的移动节点</li>
+<li>jQuery的animate方法</li>
+<li>rquestAnimationFrame</li>
+</ol>
+<h2 id="2-1-transition"><a href="#2-1-transition" class="headerlink" title="2.1 transition"></a>2.1 transition</h2><p>主要用在单页面，比较独立的动画上面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    width:100px;</span><br><span class="line">    height:100px;</span><br><span class="line">    background:red;</span><br><span class="line">    animation:myfirst 5s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@keyframes myfirst&#123;</span><br><span class="line">    0%   &#123;background:red;&#125;</span><br><span class="line">    25%  &#123;background:yellow;&#125;</span><br><span class="line">    50%  &#123;background:blue;&#125;</span><br><span class="line">    100% &#123;background:green;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-setTimeout"><a href="#2-2-setTimeout" class="headerlink" title="2.2 setTimeout"></a>2.2 setTimeout</h2><p>优点：可以用CSS3属性做动画，可以具体规定多个动画的先后顺序啊，具体实现啊之类的<br>缺点：setTimeout以间隔时间来拖动节点，和屏幕的刷新屏幕不一致，会导致错位的感觉</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var el = document.getElementById(&quot;target&quot;);</span><br><span class="line">for ( i = 0; i &lt; 200; i ++)&#123;</span><br><span class="line">    setTimeout ( function()&#123;</span><br><span class="line">        var left = el.style.left ? el.style.left : 0;</span><br><span class="line">        left = parseInt(left) + 1;</span><br><span class="line">        el.style.left = left + &quot;px&quot;;</span><br><span class="line">    &#125; , i );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-animate"><a href="#2-3-animate" class="headerlink" title="2.3 animate"></a>2.3 animate</h2><p>优点：可以具体规定多个动画的先手顺序，具体的实现过程<br>缺点：不能改变CSS3属性，支持的属性有限</p>
+<h3 id="2-3-1-animate-方法有两种形式"><a href="#2-3-1-animate-方法有两种形式" class="headerlink" title="2.3.1 .animate()方法有两种形式"></a>2.3.1 .animate()方法有两种形式</h3><p>1 第一种形式接受4个参数<br>      a. 一个包含样式属性及值的映射<br>      b. 可选的速度参数——既可以预置的字符串，也可以是一个毫秒数值<br>      c. 可选的缓动类型<br>      d. 可选的回调函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">animate(&#123;property1: &apos;value1&apos;, property2: &apos;value2&apos;&#125;,</span><br><span class="line">    speed, easing, </span><br><span class="line">    function()&#123; </span><br><span class="line">        alert(&quot;The annimate is finished.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>2 第二种形式接受2个参数，一个属性映射和一个选项映射</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.animate(&#123;propertoes&#125;, &#123;options&#125;)</span><br><span class="line">.animate(&#123;property1: &apos;value1&apos;, property2: &apos;value2&apos;&#125;, &#123;</span><br><span class="line">     duration: &apos;value&apos;,</span><br><span class="line">     easing: &apos;value&apos;,</span><br><span class="line">     complete: function()&#123; </span><br><span class="line">           alert(&quot; The animate is finshed.&quot;);    </span><br><span class="line">     &#125;,</span><br><span class="line">     queue: boolean,</span><br><span class="line">     step:callback</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-2-并发与排队效果"><a href="#2-3-2-并发与排队效果" class="headerlink" title="2.3.2 并发与排队效果"></a>2.3.2 并发与排队效果</h3><h4 id="2-3-2-1-当为同一组元素应用多重效果时，可以通过连缀这些效果轻易地实现排队"><a href="#2-3-2-1-当为同一组元素应用多重效果时，可以通过连缀这些效果轻易地实现排队" class="headerlink" title="2.3.2.1 当为同一组元素应用多重效果时，可以通过连缀这些效果轻易地实现排队"></a>2.3.2.1 当为同一组元素应用多重效果时，可以通过连缀这些效果轻易地实现排队</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'button'</span>)</span><br><span class="line">    .fadeTo(<span class="string">'fast'</span>,<span class="number">0.5</span>)</span><br><span class="line">    .animate(&#123;<span class="attr">left</span>:<span class="string">'10px'</span>&#125;,<span class="string">'slow'</span>)</span><br><span class="line">    .fadeTo(<span class="string">'slow'</span>,<span class="number">1.0</span>)</span><br><span class="line">    .slideUp(<span class="string">'slow'</span>)</span><br><span class="line">    .slideDown(<span class="string">'slow'</span>);</span><br></pre></td></tr></table></figure>
+<p>1 越过队列<br>上面的动画是一个一个执行的，如果有些动画我想要一起执行，可以简单地把它们组合到一个.animate()方法中，但如果想要组合的两个动画的duration不一样，那么就得用第二种形式的动画了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'button'</span>)</span><br><span class="line">    .fadeTo(<span class="string">'fast'</span>,<span class="number">0.5</span>)</span><br><span class="line">    .animate(</span><br><span class="line">    　　&#123;<span class="attr">left</span>:<span class="string">'10px'</span>&#125;,</span><br><span class="line">    　　&#123;</span><br><span class="line">    　　　　duration:<span class="string">'slow'</span>,</span><br><span class="line">    　　　　queue:<span class="literal">false</span>   <span class="comment">//把该选项设置为false即可让当前动画与前一个动画同时开始</span></span><br><span class="line">    　　&#125;</span><br><span class="line">    )</span><br><span class="line">    .fadeTo(<span class="string">'slow'</span>,<span class="number">1.0</span>)</span><br><span class="line">    .slideUp(<span class="string">'slow'</span>)</span><br><span class="line">    .slideDown(<span class="string">'slow'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>2 手工队列<br>为一组元素应用排队效果的最后一个需要注意的问题就是排队不能自动应用到其他的非效果方法，如.css()<br>假设上面的程序，我想要在slideDown前将背景色修改为红色，如果直接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.slideUp(&apos;slow&apos;)</span><br><span class="line">.css(&#123;backgroundColor:&apos;red&apos;&#125;)</span><br><span class="line">.slideDown(&apos;slow&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>背景色会立即改变，不会等到其他动画执行完了再执行。<br>把非效果方法添加到队列中的一种方式，就是使用.queue()方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;button&apos;)</span><br><span class="line">    .fadeTo(&apos;fast&apos;,0.5)</span><br><span class="line">    .animate(</span><br><span class="line">    　　&#123;left:&apos;10px&apos;&#125;,</span><br><span class="line">    　　&#123;</span><br><span class="line">    　　　　duration:&apos;slow&apos;,</span><br><span class="line">    　　　　queue:false  </span><br><span class="line">    　　&#125;</span><br><span class="line">    )</span><br><span class="line">    .fadeTo(&apos;slow&apos;,1.0)</span><br><span class="line">    .slideUp(&apos;slow&apos;)</span><br><span class="line">    .queue(function(next)&#123;  //传递一个回调函数</span><br><span class="line">    　　$(&apos;button&apos;).css(&#123;backgroundColor:&apos;red&apos;&#125;);</span><br><span class="line">    　　next();  //添加的这个next()方法可以让队列在中断的地方再接续起来，如果不使用next()，动画就会中断</span><br><span class="line">    &#125;)</span><br><span class="line">    .slideDown(&apos;slow&apos;);</span><br><span class="line">    //或者</span><br><span class="line">    $(&quot;div&quot;).slideUp().queue(function()&#123; </span><br><span class="line">            $(&quot;div&quot;).css(&apos;background&apos;, &apos;#f00&apos;).dequeue();//dequeue()可以让队列在中断的地方再接续起来</span><br><span class="line">    &#125;).slideDown();</span><br></pre></td></tr></table></figure></p>
+<p>3 回调函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;button&apos;)</span><br><span class="line">    .fadeTo(&apos;fast&apos;,0.5)</span><br><span class="line">    .animate(</span><br><span class="line">    　　&#123;left:&apos;10px&apos;&#125;,</span><br><span class="line">    　　&#123;</span><br><span class="line">    　　　　duration:&apos;slow&apos;,</span><br><span class="line">    　　　　queue:false   </span><br><span class="line">    　　&#125;</span><br><span class="line">    )</span><br><span class="line">    .fadeTo(&apos;slow&apos;,1.0)</span><br><span class="line">    .slideUp(&apos;slow&apos;，function()&#123;</span><br><span class="line">    　　$(&apos;p&apos;).eq(2).css(&#123;backgorundColor:&apos;red&apos;&#125;);   //用回调函数，不需要用next()</span><br><span class="line">    &#125;)</span><br><span class="line">    .slideDown(&apos;slow&apos;)</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-3-2-2-处理多组元素"><a href="#2-3-2-2-处理多组元素" class="headerlink" title="2.3.2.2 处理多组元素"></a>2.3.2.2 处理多组元素</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'button'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　$(<span class="string">'p'</span>).eq(<span class="number">2</span>).slideUp().next().slideDown();   <span class="comment">//.next()表示下一个同辈元素</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>此时，两个段落的动画是同时执行的,如果想要一个他们按顺序执行，需要用排队回调函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'button'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　$(<span class="string">'p'</span>).eq(<span class="number">2</span>).slideUp(<span class="string">'slow'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　$(<span class="keyword">this</span>).next().slideDown();     </span><br><span class="line">　　&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-3-关于效果执行顺序的总结："><a href="#2-3-3-关于效果执行顺序的总结：" class="headerlink" title="2.3.3 关于效果执行顺序的总结："></a>2.3.3 关于效果执行顺序的总结：</h3><p>1 一组元素上的效果<br>当在一个.animate()方法中以多个属性的方式应用时，是同时发生的；<br>当以方法连缀的形式应用时，是按顺序发生的（排队效果）——除非queue选项值为false;<br>2 多组元素上的效果<br>默认情况下是同时发生的；<br>当在另一个效果方法或者在.queue()方法的回调函数中应用时，是按顺序发生的（排队效果）。</p>
+<h3 id="2-3-4-注意事项"><a href="#2-3-4-注意事项" class="headerlink" title="2.3.4 注意事项"></a>2.3.4 注意事项</h3><p>1 提示：可以用 animate() 方法来操作所有 CSS 属性吗？<br>是的，几乎可以！不过，需要记住一件重要的事情：当使用 animate() 时，必须使用 Camel 标记法书写所有的属性名，比如，必须使用 paddingLeft 而不是 padding-left，使用 marginRight 而不是 margin-right，等等。<br>同时，色彩动画并不包含在核心 jQuery 库中。<br>如果需要生成颜色动画，您需要从 jQuery.com 下载 Color Animations 插件</p>
+<p>2 什么叫效果方法<br>就是jquery封装起来的显示隐藏、淡入淡出、滑动、动画之类的方法</p>
+<h2 id="2-4-requestAnimationFrame"><a href="#2-4-requestAnimationFrame" class="headerlink" title="2.4 requestAnimationFrame"></a>2.4 requestAnimationFrame</h2><p>这里我总结不出来什么东西，只能参考相关文章，都讲解的非常清楚了<br><a href="http://www.cnblogs.com/zichi/p/5208171.html" target="_blank" rel="noopener">更好的逐帧动画函数 — requestAnimationFrame 简介</a><br><a href="http://www.cnblogs.com/2050/p/3871517.html" target="_blank" rel="noopener">性能更好的js动画实现方式——requestAnimationFrame</a><br><a href="https://www.paulirish.com/2011/requestanimationframe-for-smart-animating/" target="_blank" rel="noopener">requestAnimationFrame for Smart Animating</a></p>
+<p>为什么会有requestAnimationFrame的存在呢？因为无论是setInterval()还是setTimeout都不是十分精确。为它们传入的第二个参数，实际上只是指定了把动画代码添加到浏览器UI线程队列中以等待执行的时间。如果队列前面已经加入了其他的任务，那动画代码就要等前面的任务完事之后才能执行。这样就造成了一定的堵塞。</p>
+<p>优点：<br>1、requestAnimationFrame 会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。<br>2、在隐藏或不可见的元素中，requestAnimationFrame将不会进行重绘或回流，这当然就意味着更少的的cpu，gpu和内存使用量。</p>
+<p>requestAnimationFrame的用法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.requestAnimFrame = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span>  <span class="built_in">window</span>.requestAnimationFrame       ||</span><br><span class="line">          <span class="built_in">window</span>.webkitRequestAnimationFrame ||</span><br><span class="line">          <span class="built_in">window</span>.mozRequestAnimationFrame    ||</span><br><span class="line">          <span class="function"><span class="keyword">function</span>(<span class="params"> callback </span>)</span>&#123;</span><br><span class="line">            <span class="built_in">window</span>.setTimeout(callback, <span class="number">1000</span> / <span class="number">60</span>);</span><br><span class="line">          &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>对requestAnimationFrame更牢靠的封装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    var lastTime = 0;</span><br><span class="line">    var vendors = [&apos;webkit&apos;, &apos;moz&apos;];</span><br><span class="line">    for(var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) &#123;</span><br><span class="line">        window.requestAnimationFrame = window[vendors[x]+&apos;RequestAnimationFrame&apos;];</span><br><span class="line">        window.cancelAnimationFrame =</span><br><span class="line">          window[vendors[x]+&apos;CancelAnimationFrame&apos;] || window[vendors[x]+&apos;CancelRequestAnimationFrame&apos;];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!window.requestAnimationFrame)</span><br><span class="line">        window.requestAnimationFrame = function(callback, element) &#123;</span><br><span class="line">            var currTime = new Date().getTime();</span><br><span class="line">            var timeToCall = Math.max(0, 16 - (currTime - lastTime));</span><br><span class="line">            var id = window.setTimeout(function() &#123; callback(currTime + timeToCall); &#125;,</span><br><span class="line">              timeToCall);</span><br><span class="line">            lastTime = currTime + timeToCall;</span><br><span class="line">            return id;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">    if (!window.cancelAnimationFrame)</span><br><span class="line">        window.cancelAnimationFrame = function(id) &#123;</span><br><span class="line">            clearTimeout(id);</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

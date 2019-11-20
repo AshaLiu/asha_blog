@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      如何写一个前端脚手架 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="背景之前写项目的时候写过需要抽离我的公用代码，发布到公司内部的npm仓库里。然后我就发现初始化一个最最基础的工程项目也挺麻烦的。从空白目录，要 package.json ，还要代码规范校验工具 eslint.js ， 还要 .gitignore ，还要 babel， 杂七杂八引入了之后，还要选择一下打包工具每次都要自己配置。麻烦！ 所以准备来写一个脚手架省省力。感觉还是挺有挑战性的，因为从来没有接">
+<meta name="keywords" content="脚手架 cli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何写一个前端脚手架 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2019/07/03/如何写一个前端脚手架/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="背景之前写项目的时候写过需要抽离我的公用代码，发布到公司内部的npm仓库里。然后我就发现初始化一个最最基础的工程项目也挺麻烦的。从空白目录，要 package.json ，还要代码规范校验工具 eslint.js ， 还要 .gitignore ，还要 babel， 杂七杂八引入了之后，还要选择一下打包工具每次都要自己配置。麻烦！ 所以准备来写一个脚手架省省力。感觉还是挺有挑战性的，因为从来没有接">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-14T07:26:18.763Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何写一个前端脚手架 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="背景之前写项目的时候写过需要抽离我的公用代码，发布到公司内部的npm仓库里。然后我就发现初始化一个最最基础的工程项目也挺麻烦的。从空白目录，要 package.json ，还要代码规范校验工具 eslint.js ， 还要 .gitignore ，还要 babel， 杂七杂八引入了之后，还要选择一下打包工具每次都要自己配置。麻烦！ 所以准备来写一个脚手架省省力。感觉还是挺有挑战性的，因为从来没有接">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">如何写一个前端脚手架</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-07-03" class="post-meta__date date">2019-07-03</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/脚手架-cli/">脚手架 cli</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前写项目的时候写过需要抽离我的公用代码，发布到公司内部的npm仓库里。<br>然后我就发现初始化一个最最基础的工程项目也挺麻烦的。从空白目录，要 <code>package.json</code> ，还要代码规范校验工具 <code>eslint.js</code> ， 还要 <code>.gitignore</code> ，还要 <code>babel</code>， 杂七杂八引入了之后，还要选择一下打包工具<br>每次都要自己配置。<br>麻烦！</p>
+<p>所以准备来写一个脚手架省省力。感觉还是挺有挑战性的，因为从来没有接触过写工具。一直以来都觉得写工具的人真的好牛逼。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><code>cli</code> -&gt; <code>Command Line Interface</code>，一种通过命令行来交互的工具。典型用的比较多的比如我就是 <code>vue-cli</code>。<br>这里扯一下另一个概念 <code>npm scripts</code>。这个也可以实现开发工作流，通过在 <code>package.json</code>的scripts对象上配置相关的npm命令。<br>不过这个是针对项目的，cli是全局安装的。</p>
+<h2 id="命令行辅助工具"><a href="#命令行辅助工具" class="headerlink" title="命令行辅助工具"></a>命令行辅助工具</h2><ol>
+<li>commander.js - 帮助解析参数</li>
+<li>chalk.js - 命令行输出自定义颜色，人机交互会好看点</li>
+<li>inquirer.js - 常见的交互式命令行，例如，问你选择创建什么类型的项目，如何用户移动上下箭头选择</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="创建一个新项目"><a href="#创建一个新项目" class="headerlink" title="创建一个新项目"></a>创建一个新项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir angela-cli</span><br><span class="line">cd angela-cli</span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<h3 id="创建一个可执行文件"><a href="#创建一个可执行文件" class="headerlink" title="创建一个可执行文件"></a>创建一个可执行文件</h3><p>在 <code>angela-cli</code> 中新建一个 <code>bin</code> 文件夹，如何新建一个文件 <code>angela.js</code> 。在 <code>angela.js</code> 头部加上 <code>#! /usr/bin/env node</code>，表示这是一个可执行文件。<br>然后在 <code>package.json</code> 里的 <code>bin</code> 字段，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;bin&quot;: &#123;</span><br><span class="line">    &quot;angela&quot;: &quot;bin/angela&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当用户全局安装这个 <code>angela-cli</code> 之后，直接在命令行执行 <code>angela</code>，就可以执行这个 <code>angela.js</code> 文件了。</p>
+<blockquote>
+<p>我们在写命令行工具的时候，需要指定一个可执行文件。在package.json中，bin字段用来映射命令名和可执行文件。在通过npm install -g全局安装的时候，npm会symlink可执行文件到prefix/bin文件夹。<br>  如果通过npm install本地安装的时候, npm会symlink可执行文件到./node_modules/.bin/文件夹。</p>
+</blockquote>
+<h3 id="mem-fs-editor-js"><a href="#mem-fs-editor-js" class="headerlink" title="mem-fs-editor.js"></a>mem-fs-editor.js</h3><p>因为我这个脚手架涉及到模板，然后如果直接用字符串拼接返回，这么多文件，会有点复杂和乱。所以搞了个这个，可以简单的使用ejs语法。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>剩下的就都是按照思路写代码了<br>(全部代码地址)[<a href="https://github.com/AshaLiu/angela-cli]" target="_blank" rel="noopener">https://github.com/AshaLiu/angela-cli]</a></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

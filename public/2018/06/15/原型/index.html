@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      【四】原型 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="碎碎念小米扫地机器人没有抢到。。。。这些人太快了。昨天写完文章后，为了等时间抢购，玩了三把第五人格，运气不好匹配到了红蝶，被闪现技能吓得心脏都要跳出来。强烈建议不要有这个技能，吓死人不偿命啊。现在过了一个晚上回想起来还觉得心有余悸，可怕！！！三个严重的叹号。 前言回归正题。原型、原型链又是前端开发人员另外一个圣神的话题。初级会使用这个封装一个组件，几乎是你进阶的标志。 对象对象是js的基础，js中">
+<meta name="keywords" content="js 基础 原型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【四】原型 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2018/06/15/原型/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="碎碎念小米扫地机器人没有抢到。。。。这些人太快了。昨天写完文章后，为了等时间抢购，玩了三把第五人格，运气不好匹配到了红蝶，被闪现技能吓得心脏都要跳出来。强烈建议不要有这个技能，吓死人不偿命啊。现在过了一个晚上回想起来还觉得心有余悸，可怕！！！三个严重的叹号。 前言回归正题。原型、原型链又是前端开发人员另外一个圣神的话题。初级会使用这个封装一个组件，几乎是你进阶的标志。 对象对象是js的基础，js中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ashaliu.github.io/images/article/yuanxing/yuanxinglian.jpg">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【四】原型 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="碎碎念小米扫地机器人没有抢到。。。。这些人太快了。昨天写完文章后，为了等时间抢购，玩了三把第五人格，运气不好匹配到了红蝶，被闪现技能吓得心脏都要跳出来。强烈建议不要有这个技能，吓死人不偿命啊。现在过了一个晚上回想起来还觉得心有余悸，可怕！！！三个严重的叹号。 前言回归正题。原型、原型链又是前端开发人员另外一个圣神的话题。初级会使用这个封装一个组件，几乎是你进阶的标志。 对象对象是js的基础，js中">
+<meta name="twitter:image" content="http://ashaliu.github.io/images/article/yuanxing/yuanxinglian.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">【四】原型</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-06-15" class="post-meta__date date">2018-06-15</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/js-基础-原型/">js 基础 原型</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>小米扫地机器人没有抢到。。。。这些人太快了。<br>昨天写完文章后，为了等时间抢购，玩了三把第五人格，运气不好匹配到了红蝶，被闪现技能吓得心脏都要跳出来。<br>强烈建议不要有这个技能，吓死人不偿命啊。现在过了一个晚上回想起来还觉得心有余悸，可怕！！！三个严重的叹号。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>回归正题。<code>原型</code>、<code>原型链</code>又是前端开发人员另外一个圣神的话题。初级会使用这个封装一个组件，几乎是你进阶的标志。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>对象是js的基础，js中一共有6中基本类型：</p>
+<ol>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>object</li>
+</ol>
+<p>其中有个特殊的，<code>typeof null === &#39;object&#39;</code>。也不用纠结，算是一个小问题。<br>原理上是不同的对象在底层都表示为二进制，在<code>JavaScript</code>中二进制前三位都为0的话会被判断为object类型，null的二进制表示是全0，自然前三位也是0，所以执行<code>typeof</code>时会返回“object”。</p>
+<p>js还有<code>对象子类型</code>，通常被称为<code>内置对象</code>。</p>
+<ol>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+<li>Date</li>
+<li>RegExp</li>
+<li>Error</li>
+</ol>
+<p>这些内置函数可以当作构造函数来使用，从而可以构造一个对应子类型的新对象。<br>需要注意的是<code>var str = &#39;i am working&#39;</code>，我们定义了一个str，现在我们尝试着<code>str.length</code>，这个<code>length</code>实际上是js把<code>str</code>隐性得转成了<code>String对象</code>，<code>length</code>也是<code>String对象</code>的方法。</p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>抽象点讲，类是一个蓝图，基础实现。类实例化或者被继承的时候，会把自己的特性复制到实例或者子类中。js里是没有类的，只有对象。</p>
+<h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 这个Foo的prototype就是个原型</span><br><span class="line">function Foo() &#123;</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="prototype-proto"><a href="#prototype-proto" class="headerlink" title="[[prototype]]/ __proto__"></a><code>[[prototype]]</code>/ <code>__proto__</code></h3><p>js在声明一个对象的时候，都会给这个对象的默认加一个<code>[[prototype]]</code>属性，它用对其他对象的引用，也可以认为你的父级吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    a: 1</span><br><span class="line">&#125;</span><br><span class="line">obj.a //1</span><br></pre></td></tr></table></figure></p>
+<p>当我去访问<code>a变量</code>的时候，会隐性触发一个<code>Getter</code>，这个<code>Getter</code>会先从当前作用域找<code>a</code>，找不到就会顺着这个<code>[[prototype]]</code>引用的上级对象找<code>a</code>，最后找不到再返回<code>undefined</code>。这种关联定义了<code>原型链</code>。<br><code>[[prototype]]</code>链的尽头是<code>Object.prototype</code>。<br>这个时候我们在浏览器控制台声明一个变量obj，打印obj，会发现obj有一个<code>__proto__</code>，这个就是上面说的内置属性，表现形式为这样而已，方便展示出来给开发者看。</p>
+<h3 id="prototype-prototype"><a href="#prototype-prototype" class="headerlink" title="[[prototype]]/ prototype"></a><code>[[prototype]]</code>/ <code>prototype</code></h3><p>往往拿来比较的还有一个内置属性叫<code>prototype</code>。这个比较特殊，它只有在函数对象才会有，它是拿来指向这个函数对象的原型对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Foo()&#123;</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype</span><br></pre></td></tr></table></figure></p>
+<p><code>Foo.prototype</code>就是<code>Foo</code>的原型，顺带扯一下，<code>Foo.prototype</code>里有内置一个<code>constructor</code>，指向<code>Foo</code>，<code>Foo</code>是<code>Foo.prototype</code>的<code>构造器函数</code>。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>上面介绍了啥是构造函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Foo()&#123;</span><br><span class="line">&#125;</span><br><span class="line">// 到这里为止,Foo还是一个普通函数</span><br><span class="line">var a = new Foo();</span><br><span class="line">// 等价于下面的</span><br><span class="line">// var a = &#123;&#125;;</span><br><span class="line">// a.__proto__ = Foo.prototype;</span><br><span class="line">// Foo.call(a);</span><br><span class="line"></span><br><span class="line">// Foo是构造函数</span><br></pre></td></tr></table></figure></p>
+<p>这里<code>Foo</code>就是一个构造函数(函数对象)，<code>a</code>是一个Foo的实例对象(普调对象)，在new的过程中，给a内置了一个<code>[[prototype]]</code>这里是<code>__proto__</code>，指向了<code>Foo.prototype</code>。<br>所以这里一定程度上实现了<code>继承</code>，但是类的继承是属于复制的行为，但是js对象默认是不会复制的，所以<code>new</code>的过程，给两个对象做了关联，一定程度上可以让a使用Foo的方法，这就一定程度上实现了继承。<br>所以这个<code>a.__proto__</code>就全等于<code>Foo.prototype</code>，因为它们引用的是同一个东西。<br><code>a.__proto__</code>的<code>constructor</code>属性也被委托到了<code>Foo.prototype</code>，所以<code>a.__proto__.constructor === Foo.prototype.constructor</code>。</p>
+<p>来张图感受一下：<br><img src="/images/article/yuanxing/yuanxinglian.jpg" alt="原型"></p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Foo(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.myName = function() &#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line">var a = new Foo( &quot;a&quot; );</span><br><span class="line">var b = new Foo( &quot;b&quot; );</span><br><span class="line">a.myName(); // &quot;a&quot;</span><br><span class="line">b.myName(); // &quot;b&quot;</span><br></pre></td></tr></table></figure>
+<p>这就典型的继承了原型上的<code>myName</code>的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Foo(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.myName = function() &#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line">function Bar(name,label) &#123;</span><br><span class="line">    Foo.call( this, name );</span><br><span class="line">    this.label = label;</span><br><span class="line">&#125;</span><br><span class="line">// 我们创建了一个新的 Bar.prototype 对象并指向到 Foo.prototype</span><br><span class="line">Bar.prototype = Object.create( Foo.prototype );</span><br><span class="line">// 注意!现在没有 Bar.prototype.constructor 了 // 如果你需要这个属性的话可能需要手动修复一下它</span><br><span class="line">Bar.prototype.myLabel = function() &#123;</span><br><span class="line">    return this.label;</span><br><span class="line">&#125;;</span><br><span class="line">var a = new Bar( &quot;a&quot;, &quot;obj a&quot; );</span><br><span class="line">a.myName(); // &quot;a&quot;</span><br><span class="line">a.myLabel(); // &quot;obj a&quot;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p>这段代码的核心部分就是语句 <code>Bar.prototype = Object.create()</code><br>Object.create(..) 会凭空创建一个“新”对象并把新对象内部的<code>[[Prototype]]</code>指向到你指定的对象(本例中是 Foo.prototype)。</p>
+<p>讲这么多就是说，如何实现继承，就是要改成这个内置属性的指向。<br>如果能有一个标准并且可靠的方法来修改对象的<code>[[Prototype]]</code>关联就好了。<br>在ES6之前， 我们只能通过设置<code>__proto__</code>属性来实现，但是这个方法并不是标准并且无法兼容所有浏览器。<br>ES6添加了辅助函数<code>Object.setPrototypeOf(..)</code>，可以用标准并且可靠的方法来修改关联。<br>我们来对比一下两种把<code>Bar.prototype</code>关联到<code>Foo.prototype</code>的方法:</p>
+<p>ES6之前需要抛弃默认的Bar.prototype</p>
+<p><code>Bar.prototype = Object.create( Foo.prototype );</code></p>
+<p>ES6开始可以直接修改现有的Bar.prototype</p>
+<p><code>Object.setPrototypeOf( Bar.prototype, Foo.prototype );</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var foo = &#123;</span><br><span class="line">    something: function() &#123;</span><br><span class="line">        console.log( &quot;Tell me something good...&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var bar = Object.create( foo );</span><br><span class="line">bar.something(); // Tell me something good...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// es5 的写法</span><br><span class="line">const obj = &#123;</span><br><span class="line">  method: function() &#123; ... &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.__proto__ = someOtherObj;</span><br><span class="line"></span><br><span class="line">// es6 的写法</span><br><span class="line">var obj = Object.create(someOtherObj);</span><br><span class="line">obj.method = function() &#123; ... &#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h3><p>es6新增了<code>Class</code>语法，通过<code>extends</code>就可以简单的实现继承。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class ColorPoint extends Point &#123;</span><br><span class="line">  constructor(x, y, color) &#123;</span><br><span class="line">    super(x, y); // 调用父类的constructor(x, y)</span><br><span class="line">    this.color = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    return this.color + &apos; &apos; + super.toString(); // 调用父类的toString()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>感觉es6出现真的是方便多了，像箭头函数啊，多好用，都不用想<code>this</code>，bind它。<br>这里有个<code>super</code>，在这里表示父类的构造函数，用来新建父类的this对象。<br>子类必须在<code>constructor</code>方法中调用<code>super</code>方法，否则新建实例时会报错。这是因为子类自己的this对象，必须先通过父类的构造函数完成塑造，得到与父类同样的实例属性和方法，然后再对其进行加工，加上子类自己的实例属性和方法。如果不调用<code>super</code>方法，子类就得不到<code>this对象</code>。<br>因此<code>super()</code>在这里相当于<code>Point.prototype.constructor.call(this)</code>。<br>ES5的继承，实质是先创造子类的实例对象this，然后再将父类的方法添加到this上面（Parent.apply(this)）。<br>ES6的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
+<p><code>super</code>还有个功能就是作为对象使用，代表父级。你可以<code>super.toString()</code></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>怎么写的这么语无伦次</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

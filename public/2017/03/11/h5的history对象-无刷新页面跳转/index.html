@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      h5的history对象-无刷新页面跳转 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="前言怎么说呢，公司有个官网，当然希望按照seo规则，能够愉快得被搜索引擎抓住。其中有一个我要买车的筛选页，主要功能是根据用户的需求选择车的品牌，车系，价位等筛选出车辆，大致这样的一个展示页。搜索引擎蜘蛛并不是浏览器，获取的只是从后端服务器传回来的数据。首先要想被搜索引擎抓取，那就不能按照之前常用的ajax模式(你得前后端分离，页面交给前端人员去渲染)。所以我们采取的是第一次由服务端去渲染，然后之后">
+<meta name="keywords" content="html5 history 无刷新跳转">
+<meta property="og:type" content="article">
+<meta property="og:title" content="h5的history对象-无刷新页面跳转 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2017/03/11/h5的history对象-无刷新页面跳转/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="前言怎么说呢，公司有个官网，当然希望按照seo规则，能够愉快得被搜索引擎抓住。其中有一个我要买车的筛选页，主要功能是根据用户的需求选择车的品牌，车系，价位等筛选出车辆，大致这样的一个展示页。搜索引擎蜘蛛并不是浏览器，获取的只是从后端服务器传回来的数据。首先要想被搜索引擎抓取，那就不能按照之前常用的ajax模式(你得前后端分离，页面交给前端人员去渲染)。所以我们采取的是第一次由服务端去渲染，然后之后">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="h5的history对象-无刷新页面跳转 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="前言怎么说呢，公司有个官网，当然希望按照seo规则，能够愉快得被搜索引擎抓住。其中有一个我要买车的筛选页，主要功能是根据用户的需求选择车的品牌，车系，价位等筛选出车辆，大致这样的一个展示页。搜索引擎蜘蛛并不是浏览器，获取的只是从后端服务器传回来的数据。首先要想被搜索引擎抓取，那就不能按照之前常用的ajax模式(你得前后端分离，页面交给前端人员去渲染)。所以我们采取的是第一次由服务端去渲染，然后之后">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">h5的history对象-无刷新页面跳转</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-03-11" class="post-meta__date date">2017-03-11</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/html5-history-无刷新跳转/">html5 history 无刷新跳转</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>怎么说呢，公司有个官网，当然希望按照seo规则，能够愉快得被搜索引擎抓住。<br>其中有一个我要买车的筛选页，主要功能是根据用户的需求选择车的品牌，车系，价位等筛选出车辆，大致这样的一个展示页。<br>搜索引擎蜘蛛并不是浏览器，获取的只是从后端服务器传回来的数据。<br>首先要想被搜索引擎抓取，那就不能按照之前常用的ajax模式(你得前后端分离，页面交给前端人员去渲染)。所以我们采取的是第一次由服务端去渲染，然后之后的在页面上的操作筛选交给我们前端的童鞋。 </p>
+<h3 id="url的模式"><a href="#url的模式" class="headerlink" title="url的模式"></a>url的模式</h3><p>为了响应SEO，于是着我们和服务端约定我们的url将会是这样的<code>/car/大众/polo/红色</code>，(当然实际上不会这样，这只是一个大致的比喻，我们实际试是这样的<code>http://www.cheok.com/car/Dazhong-DZJKJKC/ci_0_cp_1</code>)<br>这个时候，可能会有童鞋发出疑问，为什么我不能<code>car?brand=&quot;大众&quot;&amp;color=&quot;红色&quot;</code>？ 搜索引擎把？的这种页面叫动态页面。它们比较倾向静态页。所以很多网站都会做伪静态(就是动态伪装成静态)。<br>问题来了，<code>/car/大众/polo/红色</code>意味着要像服务器请求三次，对于用户来说，会出现三次的页面刷新重新渲染，体验非常不好，在网络差的情况，很可能会失去用户。<br>怎么办呢，前端童鞋上场了~ 我h5有一个history对象，可以既让你url变了，又可以不去服务端重新渲染，我ajax自己局部刷新。<br>所以，扯了这么多，终于引入正题。</p>
+<h3 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p><code>history</code>是挂在<code>window</code>下面的，打开控制台输入<code>history</code>，可以看到：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">History &#123;<span class="attr">length</span>: <span class="number">2</span>, <span class="attr">state</span>: <span class="literal">null</span>, <span class="attr">scrollRestoration</span>: <span class="string">"auto"</span>&#125;</span><br><span class="line">    length:<span class="number">2</span> <span class="comment">//当前窗口的浏览记录的条数</span></span><br><span class="line">    scrollRestoration:<span class="string">"auto"</span> <span class="comment">//用来设置是否回到之前滚动位置的，A-&gt;B，B一开始的滚动位置就看这个属性了，此属性可以是自动的（auto）或者手动的（manual）。</span></span><br><span class="line">    state:<span class="literal">null</span> <span class="comment">//当前页面存储的一个对象，比如你的筛选条件</span></span><br><span class="line">    __proto__:History</span><br><span class="line">        back:back()</span><br><span class="line">        <span class="keyword">constructor</span>:History()</span><br><span class="line">        forward:forward()</span><br><span class="line">        go:go()</span><br><span class="line">        length:(...)</span><br><span class="line">        get length:()</span><br><span class="line">        pushState:pushState()</span><br><span class="line">        replaceState:replaceState()</span><br><span class="line">        scrollRestoration:(...)</span><br><span class="line">        get scrollRestoration:()</span><br><span class="line">        set scrollRestoration:()</span><br><span class="line">        state:(...)</span><br><span class="line">        get state:()</span><br><span class="line">        Symbol(Symbol.toStringTag):"History"</span><br><span class="line">        __proto__:Object</span><br></pre></td></tr></table></figure></p>
+<h4 id="history-pushState-state-title-url"><a href="#history-pushState-state-title-url" class="headerlink" title="history.pushState(state, title, url)"></a>history.pushState(state, title, url)</h4><p>功能：往历史记录里面添加记录<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!!(<span class="built_in">window</span>.history &amp;&amp; history.pushState))&#123;</span><br><span class="line">  <span class="comment">// 支持History API</span></span><br><span class="line">  history.pushState(<span class="string">''</span>, <span class="string">''</span>, <span class="string">''</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 不支持</span></span><br><span class="line">  location.href = newUrl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>state：一个与指定网址相关的状态对象，popstate事件触发时，该对象会传入回调函数。如果不需要这个对象，此处可以填null。<br>  title：新页面的标题，但是所有浏览器目前都忽略这个值，因此这里可以填null。<br>  url：新的网址，必须与当前页面处在同一个域。浏览器的地址栏将显示这个网址。</p>
+</blockquote>
+<p>假如当前的url是<code>www.cheok.com/car/cp_1</code>，然后你这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> oParams = &#123;</span><br><span class="line">    modeID: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line">history.pushState(oParams, <span class="string">'我要买车'</span>, <span class="string">'/cp_2'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这个时候，观察下地址栏，会发现你的url悄无声息得变成了<code>www.cheok.com/car/cp_2</code>，其实这个页面是根本不存在的，神奇吧。然后尝试着点击后退的按钮看看效果，你会发现什么也没变。  </p>
+<h4 id="history-replaceState-state-title-url"><a href="#history-replaceState-state-title-url" class="headerlink" title="history.replaceState(state, title, url)"></a>history.replaceState(state, title, url)</h4><p>功能：和pushState的用法一样，只不过这是修改当前的记录<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假如你当前的url为 http://www.cheok.com/car.html</span></span><br><span class="line">history.pushState(&#123;<span class="attr">page</span>: <span class="number">1</span>&#125;, <span class="string">'title 1'</span>, <span class="string">'?page=1'</span>);</span><br><span class="line">history.pushState(&#123;<span class="attr">page</span>: <span class="number">2</span>&#125;, <span class="string">'title 2'</span>, <span class="string">'?page=2'</span>);</span><br><span class="line">history.replaceState(&#123;<span class="attr">page</span>: <span class="number">3</span>&#125;, <span class="string">'title 3'</span>, <span class="string">'?page=3'</span>);</span><br><span class="line"></span><br><span class="line">history.back()</span><br><span class="line"><span class="comment">// url显示为http://www.cheok.com/car.html?page=1</span></span><br><span class="line"></span><br><span class="line">history.back()</span><br><span class="line"><span class="comment">// url显示为http://www.cheok.com/car.html</span></span><br><span class="line"></span><br><span class="line">history.go(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// url显示为http://www.cheok.com/car.html?page=3</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="history-state"><a href="#history-state" class="headerlink" title="history.state"></a>history.state</h4><p>功能：返回当前页面的state对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">history.pushState(&#123;<span class="attr">page</span>: <span class="number">1</span>&#125;, <span class="string">'title 1'</span>, <span class="string">'?page=1'</span>);</span><br><span class="line"></span><br><span class="line">history.state;</span><br><span class="line"><span class="comment">// &#123; page: 1 &#125;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="popstate事件"><a href="#popstate事件" class="headerlink" title="popstate事件"></a>popstate事件</h3><p>每当同一个文档的浏览历史（即history对象）出现变化时，就会触发popstate事件。</p>
+<p>需要注意的是，仅仅调用pushState方法或replaceState方法 ，并不会触发该事件，只有用户点击浏览器倒退按钮和前进按钮，或者使用JavaScript调用back、forward、go方法时才会触发。另外，该事件只针对同一个文档，如果浏览历史的切换，导致加载不同的文档，该事件也不会触发。</p>
+<p>使用的时候，可以为popstate事件指定回调函数。这个回调函数的参数是一个event事件对象，它的state属性指向pushState和replaceState方法为当前URL所提供的状态对象（即这两个方法的第一个参数）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onpopstate = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'location: '</span> + <span class="built_in">document</span>.location);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'state: '</span> + <span class="built_in">JSON</span>.stringify(event.state));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'popstate'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'location: '</span> + <span class="built_in">document</span>.location);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'state: '</span> + <span class="built_in">JSON</span>.stringify(event.state));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//event.state就是history.state对象</span></span><br></pre></td></tr></table></figure></p>
+<p>注意，页面第一次加载的时候，在load事件发生后，Chrome和Safari浏览器（Webkit核心）会触发popstate事件，而Firefox和IE浏览器不会。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>来一段高清无码的代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> DEFALUT_PARAMS = &#123;</span><br><span class="line">        province: <span class="string">""</span>,	<span class="comment">//省份缩写</span></span><br><span class="line">        city:<span class="string">""</span>, 		<span class="comment">//城市缩写</span></span><br><span class="line">        brand: <span class="string">""</span>,		<span class="comment">//品牌缩写</span></span><br><span class="line">        series: <span class="string">""</span>,		<span class="comment">//车型缩写</span></span><br><span class="line">        minPrice: <span class="string">""</span>,	<span class="comment">//最小价格</span></span><br><span class="line">        maxPrice: <span class="string">""</span>,	<span class="comment">//最大价格</span></span><br><span class="line">        minCarAge: <span class="string">""</span>,	<span class="comment">//最小车龄</span></span><br><span class="line">        maxCarAge: <span class="string">""</span>,	<span class="comment">//最大车龄</span></span><br><span class="line">        minKmNum: <span class="string">""</span>,	<span class="comment">//最小公里数</span></span><br><span class="line">        maxKmNum: <span class="string">""</span>,	<span class="comment">//最大公里数</span></span><br><span class="line">        emissionStandard: <span class="string">""</span>,	<span class="comment">//排放标准 国Ⅱ：0；国Ⅲ：1；国Ⅳ：2；国Ⅴ：3</span></span><br><span class="line">        color: <span class="string">""</span>,	<span class="comment">//车身颜色</span></span><br><span class="line">        baseType: <span class="string">""</span>,	<span class="comment">//特色类型（0：all；1:一手好车；2：准新车；3：最新上架；4：里程少）</span></span><br><span class="line">        sortType: <span class="string">""</span>,	<span class="comment">//(默认排序0，价格1，车龄2，里程3)；</span></span><br><span class="line">        sortRule: <span class="string">""</span>,	<span class="comment">//(低到高：0;高到低：1)</span></span><br><span class="line">        currentPage: <span class="number">1</span>,	<span class="comment">//当前页数</span></span><br><span class="line">        pageSize: <span class="string">""</span>,	<span class="comment">//每页显示数量</span></span><br><span class="line">        queryKey: <span class="string">""</span>,	<span class="comment">//关键字</span></span><br><span class="line">        carCategory: <span class="string">""</span>	<span class="comment">//车型("轿车", 0),("SUV", 1),("MPV", 2), ("商用车", 3);</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//随便举个例子，存的是当前的筛选条件</span></span><br><span class="line">    oParam = &#123;</span><br><span class="line">        minPrice: <span class="string">"10"</span>,	<span class="comment">//最小价格</span></span><br><span class="line">        maxPrice: <span class="string">"15"</span>,	<span class="comment">//最大价格</span></span><br><span class="line">        minCarAge: <span class="string">"1"</span>,	<span class="comment">//最小车龄</span></span><br><span class="line">        maxCarAge: <span class="string">"7"</span>	<span class="comment">//最大车龄</span></span><br><span class="line">    &#125;,</span><br><span class="line">    paramModel = $.extend(<span class="literal">false</span>, DEFALUT_PARAMS, oParam)</span><br><span class="line">;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 占位符替换工厂。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @method</span></span><br><span class="line"><span class="comment"> * @param &#123;String&#125; sContent 含占位符的字符串。</span></span><br><span class="line"><span class="comment"> * 	当要被替换的内容中含未知替换数据，则会保留当前点位符。</span></span><br><span class="line"><span class="comment"> * @param &#123;Object&#125; oData 要替换的点位符数据，依据对象的键名与点位符一一对应，功能类似 KISSY.substitute。</span></span><br><span class="line"><span class="comment"> * @return &#123;String&#125; 返回替换后的字符串。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">substitute</span> (<span class="params">sContent, oData</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!oData) &#123;</span><br><span class="line">        <span class="keyword">return</span> sContent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> oData) &#123;</span><br><span class="line">        sContent = sContent.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\&#123;"</span> + p + <span class="string">"\\&#125;"</span>, <span class="string">"g"</span>), oData[p]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sContent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取车辆列表url地址</span></span><br><span class="line"><span class="comment"> * @param  &#123;Object&#125;  oParamModel  参数对象</span></span><br><span class="line"><span class="comment"> * @return &#123;String&#125;  Url    对应的地址</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCartListUrl</span> (<span class="params">oParamModel</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sUrl = <span class="string">'/&#123;province&#125;-&#123;city&#125;/car/&#123;brand&#125;-&#123;series&#125;/'</span>,</span><br><span class="line">        sParamStr</span><br><span class="line">    ;</span><br><span class="line">    </span><br><span class="line">    sUrl = substitute(sUrl, $.extend(oParamModel, &#123;</span><br><span class="line">        province: oParamModel.province == <span class="number">0</span> ? <span class="string">""</span> : oParamModel.province,</span><br><span class="line">        city: oParamModel.city == <span class="number">0</span> ? <span class="string">""</span> : oParamModel.city</span><br><span class="line">    &#125;))</span><br><span class="line">        .replace(<span class="regexp">/\&#123;[a-zA-Z\d]+\&#125;/ig</span>, <span class="string">""</span>)   <span class="comment">//过滤空参数</span></span><br><span class="line">        .replace(<span class="regexp">/-\//ig</span>, <span class="string">"/"</span>)  <span class="comment">//过滤城市和车系为空的情况</span></span><br><span class="line">        .replace(<span class="regexp">/c-\//i</span>, <span class="string">"/"</span>) <span class="comment">//品牌和车系都为空，过滤这一层</span></span><br><span class="line">        .replace(<span class="regexp">/\/\//ig</span>, <span class="string">"/"</span>)     <span class="comment">//过滤空的省市或者品牌车系</span></span><br><span class="line">        <span class="comment">// .replace(/\&#123;[a-zA-Z\d]+\&#125;/ig, "")   //过滤空参数</span></span><br><span class="line">        <span class="comment">// .replace(/_0\//ig, "_/")            //过滤0，针对省市</span></span><br><span class="line">    ;</span><br><span class="line">    </span><br><span class="line">    sParamStr = getCartListParamsUrl(oParamModel);            </span><br><span class="line">    sUrl += sParamStr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sUrl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取车辆列表参数url区段</span></span><br><span class="line"><span class="comment"> * @param  &#123;Object&#125;  oParamModel  参数对象</span></span><br><span class="line"><span class="comment"> * @return &#123;String&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCartListParamsUrl</span> (<span class="params">oParamModel</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sParamStr = <span class="string">"_b_&#123;baseType&#125;"</span> </span><br><span class="line">        + <span class="string">"_st_&#123;sortType&#125;"</span> </span><br><span class="line">        + <span class="string">"_sr_&#123;sortRule&#125;"</span> </span><br><span class="line">        + <span class="string">"_ip_&#123;minPrice&#125;"</span> </span><br><span class="line">        + <span class="string">"_xp_&#123;maxPrice&#125;"</span> </span><br><span class="line">        + <span class="string">"_ia_&#123;minCarAge&#125;"</span> </span><br><span class="line">        + <span class="string">"_xa_&#123;maxCarAge&#125;"</span> </span><br><span class="line">        + <span class="string">"_in_&#123;minKmNum&#125;"</span> </span><br><span class="line">        + <span class="string">"_xn_&#123;maxKmNum&#125;"</span> </span><br><span class="line">        + <span class="string">"_es_&#123;emissionStandard&#125;"</span> </span><br><span class="line">        + <span class="string">"_ci_&#123;color&#125;"</span> </span><br><span class="line">        + <span class="string">"_cp_&#123;currentPage&#125;"</span> </span><br><span class="line">        + <span class="string">"_pg_&#123;pageSize&#125;"</span> </span><br><span class="line">        + <span class="string">"_k_&#123;queryKey&#125;"</span> </span><br><span class="line">        + <span class="string">"_cm_&#123;carCategory&#125;"</span></span><br><span class="line">    ;</span><br><span class="line">    </span><br><span class="line">    sParamStr = substitute(sParamStr, $.extend(oParamModel, &#123;</span><br><span class="line">        currentPage: oParamModel.currentPage ? oParamModel.currentPage : <span class="number">1</span></span><br><span class="line">    &#125;))</span><br><span class="line">        .replace(<span class="regexp">/_[a-z]&#123;1,2&#125;_(?=_|$)/ig</span>, <span class="string">""</span>)   <span class="comment">//过滤空的</span></span><br><span class="line">        .replace(<span class="regexp">/_[a-z]&#123;1,2&#125;_\&#123;[a-zA-Z\d]+\&#125;/ig</span>, <span class="string">""</span>)   <span class="comment">//过滤没有被替换的</span></span><br><span class="line">        <span class="comment">// .replace(/_cp_0/ig, "")</span></span><br><span class="line">        .replace(<span class="regexp">/_st_0/ig</span>, <span class="string">""</span>)</span><br><span class="line">        <span class="comment">// .replace(/_sr_0/ig, "")</span></span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(sParamStr)&#123;</span><br><span class="line">        sParamStr = sParamStr.substr(<span class="number">1</span>, sParamStr.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> sParamStr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 生成跳转地址</span></span><br><span class="line"><span class="comment"> * @param oParamModel 搜索参数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fnCreateUrl</span> (<span class="params">oParamModel</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getCartListUrl(oParamModel);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 读取车辆列表数据</span></span><br><span class="line"><span class="comment"> * @return &#123;void&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">oParamModel, isInitPager</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sApiUrl = <span class="string">"/&#123;province&#125;/&#123;city&#125;/&#123;brand&#125;/&#123;series&#125;/"</span>;</span><br><span class="line">    sApiUrl = substitute(sApiUrl, $.extend(&#123;&#125;, oParamModel, &#123;</span><br><span class="line">        province: oParamModel.province || <span class="number">0</span>,</span><br><span class="line">        city: oParamModel.city || <span class="number">0</span>,</span><br><span class="line">        brand: oParamModel.brand || <span class="number">0</span>,</span><br><span class="line">        series: oParamModel.series || <span class="number">0</span></span><br><span class="line">    &#125;));</span><br><span class="line">    sApiUrl += getCartListParamsUrl(oParamModel);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//之后ajax请求渲染页面就可以了</span></span><br><span class="line">    $ajax().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 改变搜索条件</span></span><br><span class="line"><span class="comment"> * @param  &#123;Boolean&#125; isInitPager 是否重新从第一页开始，默认是</span></span><br><span class="line"><span class="comment"> * @return &#123;void&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSearch</span>(<span class="params">isInitPager</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(isInitPager)&#123;</span><br><span class="line">        paramModel.currentPage = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> sUrl = fnCreateUrl(paramModel);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!!(<span class="built_in">window</span>.history &amp;&amp; history.pushState))&#123;</span><br><span class="line">        history.pushState(paramModel, <span class="built_in">document</span>.title, sUrl);</span><br><span class="line"></span><br><span class="line">        getData(paramModel, isInitPager);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        location.href = sUrl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//然后每次更改筛选条件的时候，更新paramModel的值</span></span><br><span class="line">paramModel.color = <span class="string">'red'</span>;</span><br><span class="line">doSearch(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//一些规则具体要和服务端约定好</span></span><br></pre></td></tr></table></figure></p>
+<p>大致的流程就是，先跟服务端约定好，各种筛选条件的规则，然后<code>getCartListParamsUrl()</code>生成当前的筛选条件对应的url去<code>pushState()</code>，至于刷新的时候，如何获取先前的筛选条件，服务端会在页面里面搞一个隐藏域给我们放数据。<br>感觉讲得有点混乱，但是代码绝对是清晰的，哈哈。</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

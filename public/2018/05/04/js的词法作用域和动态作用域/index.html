@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      【一】js的词法作用域和动态作用域 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="前言今年想做这样的一件事，想整理一下javascript的一些基础知识点并且分享出来，虽然我这博客没什么人来看，但是我希望还是万一有点点进来，能在我这找到所有他想要的，帮助人少走点弯路。今天开第一篇词法作用域和动态作用域。为什么要讲这两个概念呢，因为这个是比较基础的一个基础概念，后面还引出作用域链、闭包、this啥的。 编译原理大学的时候学java，android的时候，起个javaWeb，或者a">
+<meta name="keywords" content="js 基础 词法作用域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【一】js的词法作用域和动态作用域 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2018/05/04/js的词法作用域和动态作用域/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="前言今年想做这样的一件事，想整理一下javascript的一些基础知识点并且分享出来，虽然我这博客没什么人来看，但是我希望还是万一有点点进来，能在我这找到所有他想要的，帮助人少走点弯路。今天开第一篇词法作用域和动态作用域。为什么要讲这两个概念呢，因为这个是比较基础的一个基础概念，后面还引出作用域链、闭包、this啥的。 编译原理大学的时候学java，android的时候，起个javaWeb，或者a">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.328Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【一】js的词法作用域和动态作用域 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="前言今年想做这样的一件事，想整理一下javascript的一些基础知识点并且分享出来，虽然我这博客没什么人来看，但是我希望还是万一有点点进来，能在我这找到所有他想要的，帮助人少走点弯路。今天开第一篇词法作用域和动态作用域。为什么要讲这两个概念呢，因为这个是比较基础的一个基础概念，后面还引出作用域链、闭包、this啥的。 编译原理大学的时候学java，android的时候，起个javaWeb，或者a">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">【一】js的词法作用域和动态作用域</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-05-04" class="post-meta__date date">2018-05-04</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/js-基础-词法作用域/">js 基础 词法作用域</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>今年想做这样的一件事，想整理一下javascript的一些基础知识点并且分享出来，虽然我这博客没什么人来看，但是我希望还是万一有点点进来，能在我这找到所有他想要的，帮助人少走点弯路。<br>今天开第一篇<code>词法作用域和动态作用域</code>。<br>为什么要讲这两个概念呢，因为这个是比较基础的一个基础概念，后面还引出<code>作用域链</code>、<code>闭包</code>、<code>this</code>啥的。</p>
+<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>大学的时候学java，android的时候，起个<code>javaWeb</code>，或者<code>android app</code>的时候总是要先等一下(其实是编译一下)才能预览到结果。<br>现在想想真恐怖，哪像前端，一刷新，完美！这么咋一看，会觉得javascript是”动态”的，其实它只是执行前编译。</p>
+<p>编译器会干些什么呢？</p>
+<ol>
+<li>分词/词法分析（Tokenizing/Lexing）<br>当你输入<code>var a = 2;</code>，编译器首先会分词：var、a、=、2，至于空格，取决于空格在这门语言中是否具有意义。</li>
+<li>解析/语法分析（Parsing）<br>分词之后会把对应的又映射成<code>AST（抽象语法树 Abstract Syntax Tree）</code></li>
+<li>代码生成<br>将上一步生成的<code>AST</code>转成可执行代码（其实也就是机器指令），创建一个叫作a的变量(包括分配内存等)，并将一个值储存在a中。<br>遇到<code>var a</code>，编译器会询问作用域是否已经有一个该名称的变量存在于同一个作用域的集合中，如果是，编译器会忽略该声明，继续进行编译；否则它会要求作用域爱当前作用域的集合中声明一个新的变量，并命名为a。<br>接下来<code>a = 2</code>，编译器先询问作用域，有就巴拉巴拉引用，没有就声明。</li>
+</ol>
+<p>上面的三个步骤是传统编译要进行的步骤，javascript引擎会更复杂，具体自己google。我感觉自己心里大概清楚就可以了。比如引擎肯定是越做越好的，<br>比如会给你优化，会针对现在前端的流行框架（SPA）做对应的优化等，毕竟时代在发展嘛~</p>
+<h3 id="三个角色"><a href="#三个角色" class="headerlink" title="三个角色"></a>三个角色</h3><ol>
+<li>引擎<br>从头到尾负责整个Javascript程序的编译以及执行的过程</li>
+<li>编译器<br>负责语法分析以及代码生成等脏活累活</li>
+<li>作用域<br>负责收集并维护由所有声明的标识符(变量)组成的一系列查询，并实施一套<code>根据名称查找变量</code>的规则，确定当前执行的代码对这些标识符的访问权限。</li>
+</ol>
+<p>大致过程就是，先编译器和作用域配合生成可执行代码，在引擎和作用域配合去执行这串代码。</p>
+<h4 id="LHS和RHS"><a href="#LHS和RHS" class="headerlink" title="LHS和RHS"></a>LHS和RHS</h4><p>引擎查找变量的时候会进行<code>LHS</code>和<code>RHS</code>查询。<br>作用域是一套规则，用于确定在何处以及如何查找变量(标识符)。如果查找的目的是对<br>变量进行赋值，那么就会使用 LHS 查询;如果目的是获取变量的值，就会使用 RHS 查询。<br>当发生作用域嵌套时，引擎查找变量时会一层一层上去查找，最后找不到，<code>RHS</code>查询模式会报<code>ReferenceError</code>错误，但是<code>LHS</code>不会报，相反它会为你创建一个全局的变量，<br>但是当你在严格模式下，也会报<code>ReferenceError</code>错误。这也就是一般情况下不用<code>var</code>的<code>a = 2</code>最后结果会生成一个全局变量<code>a</code>。</p>
+<h3 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h3><p>终于扯到正题了。<br>前面提过大部分标准语言编译器的第一个工作阶段叫作词法化。词法作用域是由你在写代码时将变量和块作用域写在哪里来决定的，因此当词法分析器处理代码时会保持作用域 不变(大部分情况下是这样的)。<br>词法作用域意味着作用域是由书写代码时函数声明的位置来决定的。<br>但是js有两个机制可以修改，一个是<code>eval</code>，一个是<code>with</code>。嘿嘿，不过我只用过<code>eval</code>，不常用，因为也不建议用。<br>前者可以对一段包含一个或多个声明的“代码”字符串进行演算，并借此来修改已经存在的词法作用域(在 运行时)。后者本质上是通过将一个对象的引用当作作用域来处理，将对象的属性当作作用域中的标识符来处理，从而创建了一个新的词法作用域(同样是在运行时)。<br>这两个机制的副作用是引擎无法在编译时对作用域查找进行优化，因为引擎只能谨慎地认 为这样的优化是无效的。</p>
+<p>到这里，词法作用域就介绍完了，是不是很简单。知道这个有什么用呢？<code>闭包</code>的形成的根本原因就是这个词法作用域！当然我会再开篇说。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( a );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line">    foo();</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> c = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(c);</span><br><span class="line">    &#125;</span><br><span class="line">    t();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">bar();</span><br></pre></td></tr></table></figure></p>
+<p>想了一下还是举个例子吧。</p>
+<ol>
+<li><code>全局作用域</code>，有变量<code>foo</code>、<code>bar</code>、<code>a</code></li>
+<li><code>bar函数内部作用域</code>，有变量<code>a</code>、<code>t</code>，上级是<code>全局作用域</code></li>
+<li><code>foo函数内部作用域</code>，没有声明变量，只有一个对变量<code>a</code>的<code>RHS</code>查询，上级是<code>全局作用域</code></li>
+<li><code>t函数内部作用域</code>，有变量<code>c</code>，上级作用域是<code>bar函数内部作用域</code></li>
+</ol>
+<p>所以f<code>foo函数</code>打印的是2，<code>t函数</code>打印的是1。</p>
+<h3 id="动态作用域"><a href="#动态作用域" class="headerlink" title="动态作用域"></a>动态作用域</h3><p>知道了词法作用域概念，那相对的，动态作用域就是Js在运行的时候形成的作用域。举个栗子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( a );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">bar();</span><br></pre></td></tr></table></figure></p>
+<p>上面展示的代码，正常来说打印出来的a是2，因为js是遵循词法作用域的；但是如果是从动态作用域角度来看的话，打印出来的会是3。<br>如何解释？<br>词法作用域让<code>foo()</code>中的<code>a</code>通过<code>RHS</code>引用到了全局作用域中的<code>a</code>。<br>词法作用域是在写代码或者说定义时确定的，而动态作用域是在运行时确定 的。(<code>this</code>也是!)词法作用域关注函数在何处声明，而动态作用域关注函数从何处调用。<br>你看你看，为啥要扯出动态作用域，<code>this</code>很像，当然，也是另开一篇再说。这个概念还是能扯很多的。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这篇主要是扯点很基础的概念和机制，作为开篇，抛砖引玉哇，循序渐进哇。<br>另外，<code>你不知道的js</code>真的是本好书！推荐~</p>
+<p>说来也惭愧，这篇文章开头是5月4号，现在已经是6月12号了。一个月过去了。<br>前段时间老板说要搞rn，巴拉巴拉去看rn，后来又说要做小程序，又巴拉巴拉小程序去了，这里就疏忽了。我会继续努力的~</p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

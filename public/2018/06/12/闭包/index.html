@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      【二】闭包 | 扑通扑通&#39;s blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="扑通扑通">
+    
+    
+
+    <meta name="description" content="前言这个话题真的是。。。哈哈，对于前端开发的人来说真的是一个神圣的话题。怎么说呢，就是好像搞得闭包知道了你就很牛逼了。反正我以前是这么想的，主要因为对初学者来说也挺深奥的，看网上人家分享出来的文章看了很多遍，理解了很多遍。感觉这是js开发的一个分水岭，掌握了就可以吹牛逼了哈哈哈。之前我面试别人的时候，这个问题必问，主要也想看下你会怎么说，相当坏呐哈哈，因为也扯不大清。 作用域先理解一下小概念。作用">
+<meta name="keywords" content="js 基础 闭包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【二】闭包 | 扑通扑通&#39;s blog">
+<meta property="og:url" content="http://AshaLiu.github.io/2018/06/12/闭包/index.html">
+<meta property="og:site_name" content="扑通扑通&#39;s blog">
+<meta property="og:description" content="前言这个话题真的是。。。哈哈，对于前端开发的人来说真的是一个神圣的话题。怎么说呢，就是好像搞得闭包知道了你就很牛逼了。反正我以前是这么想的，主要因为对初学者来说也挺深奥的，看网上人家分享出来的文章看了很多遍，理解了很多遍。感觉这是js开发的一个分水岭，掌握了就可以吹牛逼了哈哈哈。之前我面试别人的时候，这个问题必问，主要也想看下你会怎么说，相当坏呐哈哈，因为也扯不大清。 作用域先理解一下小概念。作用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-06T02:47:58.331Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【二】闭包 | 扑通扑通&#39;s blog">
+<meta name="twitter:description" content="前言这个话题真的是。。。哈哈，对于前端开发的人来说真的是一个神圣的话题。怎么说呢，就是好像搞得闭包知道了你就很牛逼了。反正我以前是这么想的，主要因为对初学者来说也挺深奥的，看网上人家分享出来的文章看了很多遍，理解了很多遍。感觉这是js开发的一个分水岭，掌握了就可以吹牛逼了哈哈哈。之前我面试别人的时候，这个问题必问，主要也想看下你会怎么说，相当坏呐哈哈，因为也扯不大清。 作用域先理解一下小概念。作用">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">扑通扑通&#39;s blog</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">【二】闭包</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-06-12" class="post-meta__date date">2018-06-12</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/js-基础-闭包/">js 基础 闭包</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这个话题真的是。。。哈哈，对于前端开发的人来说真的是一个神圣的话题。怎么说呢，就是好像搞得闭包知道了你就很牛逼了。<br>反正我以前是这么想的，主要因为对初学者来说也挺深奥的，看网上人家分享出来的文章看了很多遍，理解了很多遍。感觉这是js开发的一个分水岭，掌握了就可以吹牛逼了哈哈哈。<br>之前我面试别人的时候，这个问题必问，主要也想看下你会怎么说，相当坏呐哈哈，因为也扯不大清。</p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>先理解一下小概念。作用域常见的有全局作用域，函数声明里面会生成作用域。</p>
+<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><p>链就是把作用域们串起来了。作用域查询变量的时候是先从自己所在的上下文执行环境查找，找不到再问问父级作用域，一层层上去，也就形成了作用域链。</p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>简单来说就是函数内部返回的内部函数。<br>前面介绍的作用域链它的查找规则是从内而外，但是有些时候，我们需要在外面访问里面的变量。这就需要闭包了。<br>所以仔细点来说就是<code>函数在定义时的词法作用域以外的地方被调用</code>，这个函数就是闭包。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( a );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> bar;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> baz = foo();</span><br><span class="line">baz(); <span class="comment">// 2 —— 朋友，这就是闭包的效果。</span></span><br></pre></td></tr></table></figure></p>
+<p>上面展示的例子中。<code>bar函数</code>就是<code>闭包</code>。它被调用的时候是在全局的词法作用域，而不是在自己定义时的词法作用域中（foo里面）。<br>闭包理解为函数嵌套，内部函数操作外部函数的局部变量，且外层函数的引用被赋值给变量，通过变量访问内层函数匿名函数。</p>
+<h3 id="形成原因"><a href="#形成原因" class="headerlink" title="形成原因"></a>形成原因</h3><p>原因很清晰了，因为js是采用<code>词法作用域</code>的，作用域兄弟的查询变量规则也是顺从<code>作用域链</code>的，然后导致父亲没有访问子级的作用域变量的权限。<br>所以采用了迂回策略，在子级作用域搞一个函数操作这个自己作用域，然后把这个函数抛出去。。。。。</p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>看到这里我觉得也该理解了闭包是个啥了。但是很多小伙伴即使知道是啥，但是也记不住，为啥？因为没有实践呐。平常压根就不知道自己使用了吗。就算看了很多篇文章也只认识个概念，<br>脑子里还是觉得<code>闭包</code>离自己很远，实际碰上了也不认识，没印象。其实这讲的是我。反正我以前是这样的。觉得真难！</p>
+<h4 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params"> message </span>) </span>&#123;</span><br><span class="line">    setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( message );</span><br><span class="line">    &#125;, <span class="number">1000</span> );</span><br><span class="line">&#125;</span><br><span class="line">wait( <span class="string">"Hello, closure!"</span> );</span><br></pre></td></tr></table></figure>
+<p>这里的<code>setTimeout</code>其实是一个全局的挂在window的一个外包方法。<br>这里将内部函数(timer)传递给 setTimeout(..)。timer是具有涵盖 wait(..) 作用域的闭包。看看是不是很清晰。<br>在定时器、事件监听器、 Ajax请求、跨窗口通信、Web Workers或者任何其他的异步(或者同步)任务中，只要使用了回调函数，实际上就是在使用闭包!<br>因为本质上它们是把这个回调函数传递出去了，这个回调函数恰巧又能拿到父级的作用域。</p>
+<h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i ++) &#123;</span><br><span class="line">    setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( i );</span><br><span class="line">    &#125;, i * <span class="number">1000</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的demo很熟悉吧，网上的各个分享的文章都会拿来做例子，说这里期望是每隔一秒打印1-5，而实际上却是最后会打印5遍6。<br>常规解释一把，当到达指定时间执行回调的时候拿到的i是这个for循环里面的，这个i已经是6了，所以都会打印6。那怎么才能达到自己的目的呢？</p>
+<p>要达到这个目的有很多种方法。</p>
+<ol>
+<li>把<code>var</code>换成<code>let</code>，使i不共享</li>
+<li>变相的把i隔出来<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i ++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">        setTimeout( <span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log( i );</span><br><span class="line">            &#125;, i * <span class="number">1000</span> );</span><br><span class="line">        &#125;</span><br><span class="line">    )(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>其实本质上是把i隔开，最初看起来5个timer函数是在各自的for循环中声明的，但是其其实是在共享i，在编译器编译期间，会先<code>var i</code>在外部的作用域中。</p>
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><p>现在的前端发展真快，又要感慨了。<br>早些那时候还流行<code>requireJs</code>，<code>cmd</code>的时候，模块的概念刚刚出来。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CoolModule</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> something = <span class="string">"cool"</span>;</span><br><span class="line">    <span class="keyword">var</span> another = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( something );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">doAnother</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log( another.join( <span class="string">" ! "</span> ) );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        doSomething: doSomething,</span><br><span class="line">        doAnother: doAnother</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> foo = CoolModule(); foo.doSomething(); <span class="comment">// cool</span></span><br><span class="line">foo.doAnother(); <span class="comment">// 1 ! 2 ! 3</span></span><br></pre></td></tr></table></figure></p>
+<p>这种写法是不是很熟悉！这种就是<code>模块</code>。里面这个<code>doSomething函数</code>,<code>doAnother函数</code>被暴露出来在其他环境中调用，就是闭包。</p>
+<p>现在使用<code>vue</code>,<code>react</code>的都很熟悉<code>es6</code>了。<code>es6</code>也有模块的概念。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params">who</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Let me introduce: "</span> + who;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> hello;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B.js</span></span><br><span class="line"><span class="keyword">import</span> hello <span class="keyword">from</span> <span class="string">"A"</span>;</span><br><span class="line"><span class="comment">// 从A模块导出hello函数，这个也是闭包的一种体现</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>感觉说道这里肯定是明白了，没啥好总结了，都在上面了。<br>现在看看，觉得真的简单，所以看问题还是要从本质原理上走。要是以前的时候就这么看的话，就会少走很多弯路。不会那时候也菜，根本没这理解力。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>推荐<code>你不知道的javascript</code></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
